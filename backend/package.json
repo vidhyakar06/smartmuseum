@@ -4,7 +4,8 @@
   "description": "Backend API for Smart Museum & Interactive Art Guide",
   "main": "dist/server.js",
   "scripts": {
-    "build": "npx tsc",
+    "build": "node node_modules/typescript/lib/tsc.js",
+    "vercel-build": "echo 'Skipping build - handled by @vercel/node'",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts"
   },

@@ -11,7 +11,8 @@
     },
     "backend": {
       "root": "backend",
-      "framework": "express"
+      "framework": "express",
+      "buildCommand": "echo skip"
     }
   }
 }

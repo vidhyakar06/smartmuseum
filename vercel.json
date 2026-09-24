@@ -1,18 +1,4 @@
 {
-  "services": {
-    "frontend": {
-      "root": "frontend",
-      "framework": "vite",
-      "buildCommand": "npm run build",
-      "outputDirectory": "dist",
-      "rewrites": [
-        { "source": "/(.*)", "destination": "/index.html" }
-      ]
-    },
-    "backend": {
-      "root": "backend",
-      "framework": "express",
-      "buildCommand": "echo skip"
-    }
-  }
+  "version": 2,
+  "comment": "Root config - deploy frontend and backend as separate Vercel projects"
 }

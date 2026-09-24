@@ -1,6 +1,6 @@
 import { Exhibit, Gallery, DashboardData, Ticket, SupportedLanguage } from '../types/index.js';
 
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api';
 
 // Generate or retrieve persistent visitor session id
 export function getVisitorSessionId(): string {

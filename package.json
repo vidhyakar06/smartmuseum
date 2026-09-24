@@ -1,0 +1,26 @@
+{
+  "name": "smart-museum-art-guide",
+  "version": "1.0.0",
+  "description": "Smart Museum & Interactive Art Guide - Full-Stack Production System",
+  "scripts": {
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"blue,yellow\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "start": "npm --prefix backend run start",
+    "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install"
+  },
+  "keywords": [
+    "museum",
+    "art-guide",
+    "indoor-navigation",
+    "groq-llama",
+    "qr-code",
+    "byod"
+  ],
+  "author": "Smart Museum Engineering Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

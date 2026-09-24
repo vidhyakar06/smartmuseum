@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const exhibitController_js_1 = require("../controllers/exhibitController.js");
+const router = (0, express_1.Router)();
+router.get('/', exhibitController_js_1.getExhibits);
+router.get('/:id', exhibitController_js_1.getExhibitById);
+router.get('/:id/qr', exhibitController_js_1.getExhibitQR);
+router.post('/', exhibitController_js_1.createExhibit);
+router.put('/:id', exhibitController_js_1.updateExhibit);
+router.delete('/:id', exhibitController_js_1.deleteExhibit);
+exports.default = router;

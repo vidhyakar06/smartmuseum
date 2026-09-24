@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@theme {
+  --color-museum-bg: #0B0D10;
+  --color-museum-surface: #15181D;
+  --color-museum-elevated: #1E232B;
+  --color-museum-border: #2A303C;
+  --color-museum-gold: #D4AF37;
+  --color-museum-gold-light: #F3E5AB;
+  --color-museum-gold-dark: #A9861E;
+  --color-museum-cyan: #38BDF8;
+  --color-museum-cyan-dark: #0284C7;
+  --color-museum-text: #F8FAFC;
+  --color-museum-muted: #94A3B8;
+  --color-museum-subtle: #64748B;
+  --color-museum-alert: #EF4444;
+  --color-museum-warning: #F59E0B;
+  --color-museum-success: #10B981;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --shadow-gold-glow: 0 0 25px -5px rgba(212, 175, 55, 0.3);
+  --shadow-cyan-glow: 0 0 25px -5px rgba(56, 189, 248, 0.3);
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: #0B0D10;
+  color: #F8FAFC;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Glassmorphism surfaces */
+.glass-panel {
+  background: rgba(21, 24, 29, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.glass-panel-glow {
+  background: rgba(21, 24, 29, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 20px -5px rgba(212, 175, 55, 0.15);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0D10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A303C;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Audio input slider */
+input[type=range] {
+  accent-color: #D4AF37;
+}
+
+/* QR Scanner container styling */
+#qr-reader {
+  border: none !important;
+}
+
+#qr-reader__scan_region {
+  border-radius: 1rem;
+  overflow: hidden;
+}

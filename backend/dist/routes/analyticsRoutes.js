@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const analyticsController_js_1 = require("../controllers/analyticsController.js");
+const router = (0, express_1.Router)();
+router.post('/visit', analyticsController_js_1.trackEvent);
+router.post('/exhibit-view', analyticsController_js_1.trackEvent);
+router.post('/ai-question', analyticsController_js_1.trackEvent);
+router.post('/audio', analyticsController_js_1.trackEvent);
+router.post('/qr-scan', analyticsController_js_1.trackEvent);
+router.post('/event', analyticsController_js_1.trackEvent);
+router.get('/dashboard', analyticsController_js_1.getDashboardAnalytics);
+exports.default = router;

@@ -1,4 +1,1 @@
-{
-  "version": 2,
-  "comment": "Root config - deploy frontend and backend as separate Vercel projects"
-}
+{}

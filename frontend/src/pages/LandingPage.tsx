@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Compass,
-  QrCode,
   Map,
   Sparkles,
   Users,
@@ -24,7 +23,6 @@ import { SUPPORTED_LANGUAGES } from '../services/translationService.js';
 
 export const LandingPage: React.FC = () => {
   const { t, language, setLanguage } = useVisitor();
-  const navigate = useNavigate();
   const [exhibits, setExhibits] = useState<Exhibit[]>([]);
   const [galleries, setGalleries] = useState<Gallery[]>([]);
   const [loading, setLoading] = useState(true);
@@ -68,22 +66,14 @@ export const LandingPage: React.FC = () => {
             {t('welcomeSubtitle')}
           </p>
 
-          {/* 4 Primary Action Buttons */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
+          {/* 3 Primary Action Buttons */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-10">
             <Link
               to="/explore"
               className="flex flex-col items-center justify-center p-4 rounded-2xl bg-museum-gold text-black font-bold shadow-lg shadow-museum-gold/25 hover:scale-[1.02] active:scale-95 transition-all text-center group"
             >
               <Compass size={24} className="mb-2 group-hover:rotate-12 transition-transform" />
               <span className="text-xs sm:text-sm">{t('startExploring')}</span>
-            </Link>
-
-            <Link
-              to="/scan"
-              className="flex flex-col items-center justify-center p-4 rounded-2xl bg-[#1E232B] hover:bg-[#252C36] text-white border border-museum-gold/40 hover:border-museum-gold shadow-lg hover:scale-[1.02] active:scale-95 transition-all text-center group"
-            >
-              <QrCode size={24} className="mb-2 text-museum-gold group-hover:scale-110 transition-transform" />
-              <span className="text-xs sm:text-sm">{t('scanExhibitQR')}</span>
             </Link>
 
             <Link
@@ -307,36 +297,6 @@ export const LandingPage: React.FC = () => {
             ))}
           </div>
         )}
-      </section>
-
-      {/* Fast QR Demo Bar for College Presentation */}
-      <section className="rounded-2xl border border-museum-gold/30 bg-gradient-to-r from-museum-elevated to-[#151921] p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-museum-gold/20 text-museum-gold flex items-center justify-center flex-shrink-0">
-            <QrCode size={26} />
-          </div>
-          <div>
-            <h3 className="text-base font-bold text-white">{t('qrDemoTitle')}</h3>
-            <p className="text-xs text-museum-muted">
-              {t('qrDemoSub')}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => navigate('/scan')}
-            className="px-4 py-2.5 rounded-xl bg-museum-gold text-black font-bold text-xs hover:scale-105 transition-all shadow-md"
-          >
-            {t('openQRScanner')}
-          </button>
-          <button
-            onClick={() => navigate('/exhibit/EX001')}
-            className="px-4 py-2.5 rounded-xl bg-museum-elevated border border-museum-border text-white text-xs hover:bg-white/10 transition-colors"
-          >
-            {t('testMonaLisa')}
-          </button>
-        </div>
       </section>
     </div>
   );

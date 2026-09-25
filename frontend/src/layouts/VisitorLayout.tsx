@@ -1,13 +1,13 @@
 import React from 'react';
 import { Outlet, NavLink, Link } from 'react-router-dom';
-import { Home, Compass, QrCode, Map, Sparkles, Globe, Shield, Heart } from 'lucide-react';
+import { Home, Compass, Map, Sparkles, Globe, Shield } from 'lucide-react';
 import { useVisitor } from '../contexts/VisitorContext.js';
 import { SUPPORTED_LANGUAGES } from '../services/translationService.js';
 import { BeaconBar } from '../components/BeaconBar.js';
 import { AudioPlayer } from '../components/AudioPlayer.js';
 
 export const VisitorLayout: React.FC = () => {
-  const { language, setLanguage, t, favorites } = useVisitor();
+  const { language, setLanguage, t } = useVisitor();
   const [isLangOpen, setIsLangOpen] = React.useState(false);
 
   const currentLangObj = SUPPORTED_LANGUAGES.find(l => l.code === language) || SUPPORTED_LANGUAGES[0];
@@ -119,16 +119,6 @@ export const VisitorLayout: React.FC = () => {
                 {t('navExplore')}
               </NavLink>
               <NavLink
-                to="/scan"
-                className={({ isActive }) =>
-                  `px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    isActive ? 'text-museum-gold bg-museum-gold/10' : 'text-museum-muted hover:text-white'
-                  }`
-                }
-              >
-                {t('navScan')}
-              </NavLink>
-              <NavLink
                 to="/map"
                 className={({ isActive }) =>
                   `px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
@@ -213,16 +203,16 @@ export const VisitorLayout: React.FC = () => {
           <span>{t('navExplore')}</span>
         </NavLink>
 
-        {/* Highlighted Scan Button */}
+        {/* Highlighted Center AI Guide Button */}
         <NavLink
-          to="/scan"
+          to="/ai"
           className={({ isActive }) =>
-            `flex flex-col items-center justify-center -mt-5 w-12 h-12 rounded-full bg-gradient-to-tr from-museum-gold to-museum-gold-light text-black shadow-lg shadow-museum-gold/30 border-2 border-[#0B0D10] font-bold transition-transform active:scale-95 ${
-              isActive ? 'ring-2 ring-museum-gold' : ''
+            `flex flex-col items-center justify-center -mt-5 w-12 h-12 rounded-full bg-gradient-to-tr from-museum-cyan to-blue-500 text-black shadow-lg shadow-museum-cyan/30 border-2 border-[#0B0D10] font-bold transition-transform active:scale-95 ${
+              isActive ? 'ring-2 ring-museum-cyan' : ''
             }`
           }
         >
-          <QrCode size={20} />
+          <Sparkles size={20} className="text-black" />
         </NavLink>
 
         <NavLink
@@ -235,18 +225,6 @@ export const VisitorLayout: React.FC = () => {
         >
           <Map size={18} />
           <span>{t('navMap')}</span>
-        </NavLink>
-
-        <NavLink
-          to="/ai"
-          className={({ isActive }) =>
-            `flex flex-col items-center gap-1 text-[10px] font-medium transition-colors ${
-              isActive ? 'text-museum-cyan font-bold' : 'text-museum-muted hover:text-white'
-            }`
-          }
-        >
-          <Sparkles size={18} className="text-museum-cyan" />
-          <span>{t('navAI')}</span>
         </NavLink>
 
         <NavLink

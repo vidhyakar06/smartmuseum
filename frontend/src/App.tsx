@@ -9,7 +9,6 @@ import { AdminLayout } from './layouts/AdminLayout.js';
 import { LandingPage } from './pages/LandingPage.js';
 import { ExplorePage } from './pages/ExplorePage.js';
 import { ExhibitDetailPage } from './pages/ExhibitDetailPage.js';
-import { QRScannerPage } from './pages/QRScannerPage.js';
 import { IndoorMapPage } from './pages/IndoorMapPage.js';
 import { AIGuidePage } from './pages/AIGuidePage.js';
 import { LanguagePage } from './pages/LanguagePage.js';
@@ -45,7 +44,7 @@ export const App: React.FC = () => {
               <Route index element={<LandingPage />} />
               <Route path="explore" element={<ExplorePage />} />
               <Route path="exhibit/:id" element={<ExhibitDetailPage />} />
-              <Route path="scan" element={<QRScannerPage />} />
+              <Route path="scan" element={<Navigate to="/explore" replace />} />
               <Route path="map" element={<IndoorMapPage />} />
               <Route path="ai" element={<AIGuidePage />} />
               <Route path="languages" element={<LanguagePage />} />

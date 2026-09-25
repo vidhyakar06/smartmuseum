@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { User, Heart, Compass, Headphones, Ticket as TicketIcon, QrCode, Sparkles, ExternalLink } from 'lucide-react';
+import { User, Heart, Compass, Headphones, Ticket as TicketIcon, Sparkles, ExternalLink } from 'lucide-react';
 import { useVisitor } from '../contexts/VisitorContext.js';
 import { api, getVisitorSessionId } from '../services/api.js';
 import { Exhibit } from '../types/index.js';
@@ -69,11 +69,11 @@ export const VisitorProfilePage: React.FC = () => {
         </div>
 
         <Link
-          to="/scan"
+          to="/explore"
           className="px-4 py-2.5 rounded-xl bg-museum-elevated border border-museum-border hover:border-museum-gold text-white text-xs font-semibold transition-all flex items-center gap-2"
         >
-          <QrCode size={16} />
-          <span>Scan Next Exhibit</span>
+          <Compass size={16} className="text-museum-gold" />
+          <span>Explore Exhibits</span>
         </Link>
       </div>
 

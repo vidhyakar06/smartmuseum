@@ -48,7 +48,7 @@ export const AIGuidePage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isThinking, setIsThinking] = useState(false);
-  const [activeEngine, setActiveEngine] = useState<string>('Google Gemini');
+  const [activeEngine, setActiveEngine] = useState<string>('Athena Art AI');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Load exhibits
@@ -67,15 +67,15 @@ export const AIGuidePage: React.FC = () => {
   // Initial welcome message from AI
   useEffect(() => {
     const welcome = selectedExhibit
-      ? `Greetings! I am Athena, your AI Curatorial Guide powered by Google Gemini. I am loaded with deep scholarly knowledge about "${selectedExhibit.title}" by ${selectedExhibit.artist}. How may I illuminate your experience today?`
-      : 'Welcome to the Smart Museum! I am Athena, your AI Art Historian and Interactive Guide powered by Google Gemini. You can ask me about our permanent galleries, art movements, or select any artwork for deep curatorial analysis.';
+      ? `Greetings! I am Athena, your Autonomous AI Curatorial Guide. I am loaded with deep scholarly knowledge about "${selectedExhibit.title}" by ${selectedExhibit.artist}. How may I illuminate your experience today?`
+      : 'Welcome to the Smart Museum! I am Athena, your Autonomous AI Art Historian and Interactive Guide. You can ask me about our permanent galleries, art movements, or select any artwork for deep curatorial analysis.';
 
     setMessages([
       {
         sender: 'assistant',
         text: welcome,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        source: 'gemini-flash'
+        source: 'athena-art-ai'
       }
     ]);
   }, [selectedExhibit?.exhibitId]);
@@ -113,12 +113,12 @@ export const AIGuidePage: React.FC = () => {
       });
 
       if (res.success && res.data) {
-        if (res.data.source === 'gemini-flash') {
+        if (res.data.source === 'athena-art-ai' || res.data.source === 'local-art-expert') {
+          setActiveEngine('Athena Art AI (Built-in)');
+        } else if (res.data.source === 'gemini-flash') {
           setActiveEngine('Google Gemini');
         } else if (res.data.source === 'groq-llama') {
           setActiveEngine('Groq LLaMA 3.3');
-        } else if (res.data.source === 'local-art-expert') {
-          setActiveEngine('Offline Art Expert');
         }
 
         setMessages(prev => [
@@ -309,7 +309,7 @@ export const AIGuidePage: React.FC = () => {
                 <div className="flex items-center gap-3">
                   {msg.source && (
                     <span>
-                      Engine: {msg.source === 'gemini-flash' ? 'Google Gemini' : msg.source === 'groq-llama' ? 'Groq LLaMA' : 'Local Art Expert'}
+                      Engine: {msg.source === 'gemini-flash' ? 'Google Gemini' : msg.source === 'groq-llama' ? 'Groq LLaMA' : 'Athena Art AI (Built-in)'}
                     </span>
                   )}
                   <button

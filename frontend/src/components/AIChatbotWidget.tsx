@@ -29,9 +29,9 @@ export const AIChatbotWidget: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: 'assistant',
-      text: 'Greetings! I am Athena, your AI Museum Historian powered by Google Gemini. Ask me anything about our exhibits, artists, visiting hours, or galleries!',
+      text: 'Greetings! I am Athena, your Autonomous AI Museum Historian. Ask me anything about our exhibits, artists, visiting hours, galleries, or walking directions!',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      source: 'Google Gemini'
+      source: 'Athena Art AI'
     }
   ]);
   const [inputText, setInputText] = useState('');
@@ -178,7 +178,7 @@ export const AIChatbotWidget: React.FC = () => {
                   <span className="w-2 h-2 rounded-full bg-emerald-400" title="Online" />
                 </div>
                 <p className="text-[10px] font-mono text-museum-cyan flex items-center gap-1">
-                  Google Gemini AI Connected
+                  Athena Autonomous AI (Active)
                 </p>
               </div>
             </div>

@@ -805,6 +805,222 @@ export const seedExhibits: Exhibit[] = [
       }
     },
     createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-019',
+    exhibitId: 'EX019',
+    title: 'The Arnolfini Portrait',
+    artist: 'Jan van Eyck',
+    year: '1434',
+    category: 'Northern Renaissance',
+    description: 'A masterpiece of Northern Renaissance realism, depicting Italian merchant Giovanni di Nicolao Arnolfini and his wife in their Bruges home with incredible detail and a famous convex mirror.',
+    longDescription: 'Jan van Eyck revolutionized oil painting with this work, employing translucent glaze layers to capture light, fabrics, and textures with uncanny precision. The convex mirror on the back wall reflects two visitors entering the room—one presumed to be the painter himself—accompanied by the inscription "Johannes de eyck fuit hic 1434" (Jan van Eyck was here).',
+    images: [
+      '/artworks/arnolfini_portrait.jpg'
+    ],
+    audioUrl: '/audio/arnolfini_en.mp3',
+    audioDuration: 150,
+    galleryId: 'GAL_A',
+    location: 'Gallery A - Flemish Alcove',
+    coordinates: { x: 230, y: 155, floor: 1 },
+    highlight: true,
+    featured: false,
+    curatorNotes: 'Oil on oak panel. Renowned for its complex iconography, luminous optical clarity, and symbolic fidelity.',
+    medium: 'Oil on oak panel',
+    dimensions: '82.2 cm × 60 cm (32.4 in × 23.6 in)',
+    translations: {
+      ta: {
+        title: 'அர்னால்ஃபினி உருவப்படம்',
+        description: 'ஜான் வான் ஐக்கின் மறுமலர்ச்சி கால தலைசிறந்த எண்ணெய் ஓவியம்.',
+        category: 'வடக்கு மறுமலர்ச்சி'
+      },
+      hi: {
+        title: 'द अरनॉल्फिनी पोर्ट्रेट',
+        description: 'जान वैन आइक की उत्तरी पुनर्जागरण काल ​​की एक असाधारण यथार्थवादी कृति।',
+        category: 'उत्तरी पुनर्जागरण'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-020',
+    exhibitId: 'EX020',
+    title: 'A Sunday on La Grande Jatte',
+    artist: 'Georges Seurat',
+    year: '1884–1886',
+    category: 'Pointillism',
+    description: 'The pinnacle of Neo-Impressionism and Pointillism, depicting 19th-century Parisians unwinding on an island in the River Seine.',
+    longDescription: 'Georges Seurat spent over two years composing this monumental canvas, applying millions of microscopic dots of complementary colors that merge optically in the viewer’s eye rather than being mixed on a palette. The canvas radiates tranquil leisure and architectural poise.',
+    images: [
+      '/artworks/sunday_grande_jatte.jpg'
+    ],
+    audioUrl: '/audio/seurat_en.mp3',
+    audioDuration: 160,
+    galleryId: 'GAL_B',
+    location: 'Gallery B - West Wing',
+    coordinates: { x: 440, y: 170, floor: 1 },
+    highlight: true,
+    featured: true,
+    curatorNotes: 'Monumental Pointillist work. Seurat pioneered chromoluminarism (Divisionism) here.',
+    medium: 'Oil on canvas',
+    dimensions: '207.5 cm × 308.1 cm (81.7 in × 121.3 in)',
+    translations: {
+      ta: {
+        title: 'லா கிராண்டே ஜாட்டில் ஒரு ஞாயிறு',
+        description: 'ஜார்ஜஸ் சூராவின் புள்ளி ஓவிய பாணி (Pointillism) மாபெரும் கலைப்படைப்பு.',
+        category: 'புள்ளியியல்'
+      },
+      hi: {
+        title: 'ला ग्रांडे जाट्टे पर एक रविवार',
+        description: 'जॉर्जेस सोरा की बिंदुवाद (पॉइंटिलिज्म) शैली का विश्वप्रसिद्ध ऐतिहासिक चित्र।',
+        category: 'बिंदुवाद'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-021',
+    exhibitId: 'EX021',
+    title: 'The Swing',
+    artist: 'Jean-Honoré Fragonard',
+    year: '1767',
+    category: 'Rococo',
+    description: 'The quintessential masterpiece of French Rococo art, capturing a young woman on a swing in a sun-dappled, overgrown garden.',
+    longDescription: 'Commissioned by a French aristocrat, The Swing (L\'Escarpolette) epitomizes the playful eroticism, wit, and pastel opulence of 18th-century French Rococo. As the noblewoman swings upwards, she kicks off her dainty pink slipper while a young suitor hidden in the rose bushes gazes in admiration.',
+    images: [
+      '/artworks/the_swing.jpg'
+    ],
+    audioUrl: '/audio/swing_en.mp3',
+    audioDuration: 125,
+    galleryId: 'GAL_A',
+    location: 'Gallery A - Salon Du Barry',
+    coordinates: { x: 190, y: 185, floor: 1 },
+    highlight: true,
+    featured: false,
+    curatorNotes: 'Celebrated for its billowing pink silk dress, lush atmospheric vegetation, and charming rococo elegance.',
+    medium: 'Oil on canvas',
+    dimensions: '81 cm × 64 cm (32 in × 25 in)',
+    translations: {
+      ta: {
+        title: 'தி ஸ்விங் (ஊஞ்சல்)',
+        description: 'ஜீன்-ஹானோரே ஃப்ராகோனார்டின் ரோகோகோ கலைப் பாணியின் புகழ்வாய்ந்த காதல் ஓவியம்.',
+        category: 'ரோகோகோ'
+      },
+      hi: {
+        title: 'द स्विंग (झूला)',
+        description: 'जीन-होनोरे फ्रैगोनार्ड की रोकोको शैली का रोमांटिक और सुंदर उत्कृष्ट चित्र।',
+        category: 'रोकोको'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-022',
+    exhibitId: 'EX022',
+    title: 'Liberty Leading the People',
+    artist: 'Eugène Delacroix',
+    year: '1830',
+    category: 'Romanticism',
+    description: 'A stirring symbol of freedom and revolution, featuring Lady Liberty holding aloft the French tricolor flag over the July Revolution barricades.',
+    longDescription: 'Commemorating the French July Revolution of 1830 which toppled King Charles X, Delacroix personifies Liberty as Marianne—an allegorical goddess of freedom and a robust woman of the people. Surrounding her are citizens of every social class united under the French tricolour.',
+    images: [
+      '/artworks/liberty_leading_people.jpg'
+    ],
+    audioUrl: '/audio/delacroix_en.mp3',
+    audioDuration: 155,
+    galleryId: 'GAL_B',
+    location: 'Gallery B - Central Memorial Hall',
+    coordinates: { x: 520, y: 165, floor: 1 },
+    highlight: true,
+    featured: true,
+    curatorNotes: 'One of the most universal symbols of democracy and civil resistance in human art history.',
+    medium: 'Oil on canvas',
+    dimensions: '260 cm × 325 cm (102.4 in × 128 in)',
+    translations: {
+      ta: {
+        title: 'மக்களை வழிநடத்தும் விடுதலை தேவதை',
+        description: 'யூஜின் டெலாக்ரூவாவின் பிரெஞ்சு புரட்சிப் பின்னணியில் அமைந்த உணர்ச்சிமிகுந்த ஓவியம்.',
+        category: 'கற்பனாவாதம்'
+      },
+      hi: {
+        title: 'लिबर्टी लीडिंग द पीपल',
+        description: 'यूजीन डेलाक्रोइक्स की फ्रांसीसी क्रांति का प्रतिनिधित्व करने वाली प्रेरक ऐतिहासिक पेंटिंग।',
+        category: 'स्वच्छंदतावाद'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-023',
+    exhibitId: 'EX023',
+    title: 'The Tower of Babel',
+    artist: 'Pieter Bruegel the Elder',
+    year: '1563',
+    category: 'Northern Renaissance',
+    description: 'An epic monumental portrayal of the biblical tower rising toward the heavens amidst an intricate bustling Flemish harbor city.',
+    longDescription: 'Bruegel captures the biblical hubris of humanity attempting to construct a tower that reaches the heavens. The colossal architecture resembles the Roman Colosseum, populated with hundreds of stonecutters, hoists, scaffolding, and ships unloading limestone blocks at the waterfront.',
+    images: [
+      '/artworks/tower_of_babel.jpg'
+    ],
+    audioUrl: '/audio/babel_en.mp3',
+    audioDuration: 140,
+    galleryId: 'GAL_E',
+    location: 'Gallery E - Northern Masters',
+    coordinates: { x: 740, y: 340, floor: 1 },
+    highlight: true,
+    featured: false,
+    curatorNotes: 'Masterwork of Renaissance architectural fantasy, engineering depiction, and social commentary.',
+    medium: 'Oil on wood panel',
+    dimensions: '114 cm × 155 cm (45 in × 61 in)',
+    translations: {
+      ta: {
+        title: 'பாபேல் கோபுரம்',
+        description: 'பீட்டர் புருகலின் வானளாவிய விவிலிய பாபேல் கோபுரத்தின் விசித்திரமான ஓவியம்.',
+        category: 'வடக்கு மறுமலர்ச்சி'
+      },
+      hi: {
+        title: 'द टावर ऑफ बेबेल',
+        description: 'पीटर ब्रूगेल द एल्डर की विशाल और अत्यंत विस्तृत ऐतिहासिक बाइबिल पेंटिंग।',
+        category: 'उत्तरी पुनर्जागरण'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-024',
+    exhibitId: 'EX024',
+    title: 'Sunflowers',
+    artist: 'Vincent van Gogh',
+    year: '1888',
+    category: 'Post-Impressionism',
+    description: 'A radiant symphony in yellow, capturing sunflowers in various stages of bloom painted to decorate the Yellow House in Arles.',
+    longDescription: 'Van Gogh created this iconic still life series to welcome his friend Paul Gauguin to the Yellow House in Arles. Utilizing revolutionary vibrant chrome yellows and sculptural impasto brushstrokes, Van Gogh demonstrated that an entire world of emotion and spirituality could be expressed through variations of a single hue.',
+    images: [
+      '/artworks/sunflowers.jpg'
+    ],
+    audioUrl: '/audio/sunflowers_en.mp3',
+    audioDuration: 135,
+    galleryId: 'GAL_B',
+    location: 'Gallery B - Van Gogh Suite',
+    coordinates: { x: 600, y: 150, floor: 1 },
+    highlight: true,
+    featured: true,
+    curatorNotes: 'Celebrated for its pioneering tonal monochrome yellow harmony and raw emotional energy.',
+    medium: 'Oil on canvas',
+    dimensions: '92.1 cm × 73 cm (36.3 in × 28.7 in)',
+    translations: {
+      ta: {
+        title: 'சூரியகாந்தி பூக்கள்',
+        description: 'வின்சென்ட் வான் கோவின் புகழ்பெற்ற துடிப்பான மஞ்சள் வண்ண சூரியகாந்தி ஓவியம்.',
+        category: 'பின்-உணர்வுப்பதிவுவாதம்'
+      },
+      hi: {
+        title: 'सनफ्लॉवर्स (सूरजमुखी)',
+        description: 'विन्सेंट वैन गॉग की पीले रंगों के जीवंत रंगों से सजी अद्वितीय मास्टरपीस पेंटिंग।',
+        category: 'उत्तर-प्रभाववाद'
+      }
+    },
+    createdAt: new Date().toISOString()
   }
 ];
 

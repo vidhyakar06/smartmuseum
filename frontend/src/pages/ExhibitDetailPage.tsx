@@ -16,7 +16,9 @@ import {
   ExternalLink,
   Globe,
   Maximize2,
-  X
+  X,
+  Play,
+  Pause
 } from 'lucide-react';
 import { api } from '../services/api.js';
 import { Exhibit } from '../types/index.js';
@@ -27,7 +29,7 @@ import { ExhibitCard } from '../components/ExhibitCard.js';
 export const ExhibitDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { language, setLanguage, favorites, toggleFavorite, playAudio, t, markVisited } = useVisitor();
+  const { language, setLanguage, favorites, toggleFavorite, playAudio, toggleAudio, activeAudio, t, markVisited } = useVisitor();
 
   const [exhibit, setExhibit] = useState<Exhibit | null>(null);
   const [relatedExhibits, setRelatedExhibits] = useState<Exhibit[]>([]);
@@ -282,11 +284,17 @@ export const ExhibitDetailPage: React.FC = () => {
 
             {/* Listen Audio Guide Button */}
             <button
-              onClick={() => playAudio(exhibit)}
-              className="flex flex-col items-center justify-center p-3 rounded-xl bg-museum-gold/15 hover:bg-museum-gold/25 border border-museum-gold/40 text-museum-gold hover:scale-[1.02] active:scale-95 transition-all text-center group"
+              onClick={() => toggleAudio(exhibit)}
+              className={`flex flex-col items-center justify-center p-3 rounded-xl border hover:scale-[1.02] active:scale-95 transition-all text-center group ${
+                activeAudio?.exhibit?.exhibitId === exhibit.exhibitId && activeAudio.isPlaying
+                  ? 'bg-museum-gold text-black font-bold border-museum-gold shadow-lg shadow-museum-gold/30'
+                  : 'bg-museum-gold/15 hover:bg-museum-gold/25 border-museum-gold/40 text-museum-gold'
+              }`}
             >
-              <Headphones size={20} className="mb-1 text-museum-gold group-hover:scale-110 transition-transform" />
-              <span className="text-xs font-bold">{t('listen')}</span>
+              <Headphones size={20} className={`mb-1 ${activeAudio?.exhibit?.exhibitId === exhibit.exhibitId && activeAudio.isPlaying ? 'animate-bounce text-black' : 'text-museum-gold group-hover:scale-110'} transition-transform`} />
+              <span className="text-xs font-bold">
+                {activeAudio?.exhibit?.exhibitId === exhibit.exhibitId && activeAudio.isPlaying ? 'Listening...' : t('listen')}
+              </span>
             </button>
 
             {/* Navigate on Map Button */}
@@ -297,6 +305,48 @@ export const ExhibitDetailPage: React.FC = () => {
               <Navigation size={20} className="mb-1 text-museum-text group-hover:-translate-y-0.5 transition-transform" />
               <span className="text-xs font-bold">{t('navigate')}</span>
             </button>
+          </div>
+
+          {/* Curated In-Depth Painting Audio Tour Showcase */}
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-museum-gold/15 via-[#161922] to-museum-cyan/10 border border-museum-gold/40 relative overflow-hidden group shadow-lg">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="flex items-center gap-1 text-[11px] font-bold text-museum-gold uppercase tracking-wider bg-museum-gold/20 px-2.5 py-0.5 rounded-full border border-museum-gold/40">
+                    <Headphones size={12} className={activeAudio?.exhibit?.exhibitId === exhibit.exhibitId && activeAudio.isPlaying ? 'animate-bounce' : ''} />
+                    <span>Curated Audio Docent</span>
+                  </span>
+                  <span className="text-[11px] text-museum-cyan font-mono bg-museum-cyan/10 px-2 py-0.5 rounded border border-museum-cyan/30">
+                    {exhibit.audioDuration || 140}s In-Depth Tour
+                  </span>
+                </div>
+                <h3 className="text-sm font-semibold text-white">
+                  {activeAudio?.exhibit?.exhibitId === exhibit.exhibitId && activeAudio.isPlaying
+                    ? 'Now Explaining Painting In Detail...'
+                    : 'Listen to Full Painting Analysis'}
+                </h3>
+                <p className="text-xs text-museum-muted leading-relaxed">
+                  Explains brushwork, medium ({exhibit.medium || 'Oil on canvas'}), dimensions, historical significance, and hidden curatorial insights in {language.toUpperCase()}.
+                </p>
+              </div>
+
+              <button
+                onClick={() => toggleAudio(exhibit)}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-museum-gold to-museum-gold-light text-black font-bold text-xs shadow-lg shadow-museum-gold/30 hover:scale-105 active:scale-95 transition-all flex-shrink-0"
+              >
+                {activeAudio?.exhibit?.exhibitId === exhibit.exhibitId && activeAudio.isPlaying ? (
+                  <>
+                    <Pause size={15} fill="black" />
+                    <span>Pause Audio</span>
+                  </>
+                ) : (
+                  <>
+                    <Play size={15} fill="black" />
+                    <span>Play Audio Guide</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Multilingual Audio & Curatorial Text Selector */}

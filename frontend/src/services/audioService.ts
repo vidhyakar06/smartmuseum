@@ -194,12 +194,40 @@ class MuseumAudioService {
       .map(s => s.trim())
       .filter(s => s.length > 0);
 
+    const initialChunks: string[] = [];
+    for (const chunk of rawChunks) {
+      if (chunk.length <= 160) {
+        initialChunks.push(chunk);
+      } else {
+        // Split further on commas, colons or dashes
+        const subParts = chunk.replace(/([,:—–]+)/g, '$1|').split('|').map(s => s.trim()).filter(s => s.length > 0);
+        for (const sub of subParts) {
+          if (sub.length <= 160) {
+            initialChunks.push(sub);
+          } else {
+            // Split by space
+            const words = sub.split(' ');
+            let line = '';
+            for (const w of words) {
+              if ((line + ' ' + w).trim().length <= 140) {
+                line = (line + ' ' + w).trim();
+              } else {
+                if (line) initialChunks.push(line);
+                line = w;
+              }
+            }
+            if (line) initialChunks.push(line);
+          }
+        }
+      }
+    }
+
     const merged: string[] = [];
     let buffer = '';
-    for (const c of rawChunks) {
+    for (const c of initialChunks) {
       if (buffer.length === 0) {
         buffer = c;
-      } else if (buffer.length + c.length < 140) {
+      } else if (buffer.length + c.length + 1 < 140) {
         buffer += ' ' + c;
       } else {
         merged.push(buffer);
@@ -223,11 +251,12 @@ class MuseumAudioService {
     this.sentences = this.splitSentences(text);
     this.sentenceIndex = 0;
 
-    // Estimate duration: approx 2.2 words per second
+    // Estimate duration: approx 2.2 words per second, ensuring audio has enough time
     const wordCount = text.split(/\s+/).length;
     const estDuration = Math.max(
-      durationOverride || Math.ceil(wordCount / (2.2 * this.state.playbackRate)),
-      15
+      Math.ceil(wordCount / (2.2 * this.state.playbackRate)),
+      durationOverride || 0,
+      20
     );
 
     const nativeVoice = this.getNativeVoice(lang);

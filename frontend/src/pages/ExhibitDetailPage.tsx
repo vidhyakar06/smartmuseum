@@ -14,7 +14,9 @@ import {
   Clock,
   Info,
   ExternalLink,
-  Globe
+  Globe,
+  Maximize2,
+  X
 } from 'lucide-react';
 import { api } from '../services/api.js';
 import { Exhibit } from '../types/index.js';
@@ -33,6 +35,7 @@ export const ExhibitDetailPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -171,24 +174,45 @@ export const ExhibitDetailPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: High-Res Artwork Visuals (5 cols) */}
         <div className="lg:col-span-6 space-y-4">
-          <div className="relative aspect-[4/3] sm:aspect-[4/3] rounded-3xl overflow-hidden bg-[#090B0E] border border-museum-border shadow-2xl group">
+          {/* High-Res Artwork Visuals Container */}
+          <div
+            onClick={() => setIsZoomOpen(true)}
+            className="relative rounded-3xl overflow-hidden bg-[#090B0E] border border-museum-border shadow-2xl group min-h-[440px] max-h-[580px] flex items-center justify-center p-3 cursor-zoom-in"
+          >
+            {/* Ambient Blurred Artwork Glow */}
+            <img
+              src={exhibit.images[selectedImageIndex] || exhibit.images[0]}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-25 scale-110 pointer-events-none"
+            />
+
+            {/* Complete, Uncropped Masterpiece Artwork */}
             <img
               src={exhibit.images[selectedImageIndex] || exhibit.images[0]}
               alt={localized.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              className="relative z-10 max-h-[520px] w-auto max-w-full rounded-2xl object-contain shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.02]"
             />
 
             {/* Gallery Location Overlay */}
-            <div className="absolute top-4 left-4">
-              <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-museum-cyan/30 text-xs font-mono text-museum-cyan flex items-center gap-1.5 shadow-lg">
+            <div className="absolute top-4 left-4 z-20">
+              <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-museum-cyan/40 text-xs font-mono text-museum-cyan flex items-center gap-1.5 shadow-lg">
                 <MapPin size={13} />
                 <span>{exhibit.location}</span>
               </span>
             </div>
 
+            {/* Zoom / Expand Indicator */}
+            <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs text-white/90 flex items-center gap-1.5 shadow-lg">
+                <Maximize2 size={13} />
+                <span>Full View</span>
+              </span>
+            </div>
+
             {/* Category Overlay */}
-            <div className="absolute bottom-4 left-4">
-              <span className="px-3 py-1 rounded-full bg-museum-gold/20 backdrop-blur-md border border-museum-gold/40 text-xs font-semibold text-museum-gold shadow-lg">
+            <div className="absolute bottom-4 left-4 z-20">
+              <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-museum-gold/40 text-xs font-semibold text-museum-gold shadow-lg">
                 {localized.category || exhibit.category}
               </span>
             </div>
@@ -357,6 +381,33 @@ export const ExhibitDetailPage: React.FC = () => {
             ))}
           </div>
         </section>
+      )}
+
+      {/* High-Resolution Zoom Lightbox Modal */}
+      {isZoomOpen && (
+        <div
+          onClick={() => setIsZoomOpen(false)}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200"
+        >
+          <button
+            onClick={() => setIsZoomOpen(false)}
+            className="absolute top-6 right-6 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-50 cursor-pointer"
+            title="Close Full View"
+          >
+            <X size={24} />
+          </button>
+          <div className="max-w-4xl max-h-[88vh] flex flex-col items-center">
+            <img
+              src={exhibit.images[selectedImageIndex] || exhibit.images[0]}
+              alt={localized.title}
+              className="max-h-[80vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <p className="mt-3 text-center text-sm font-serif text-museum-gold font-medium">
+              {localized.title} — {exhibit.artist} ({exhibit.year})
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );

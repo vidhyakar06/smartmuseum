@@ -48,7 +48,7 @@ export const ExhibitCard: React.FC<ExhibitCardProps> = ({ exhibit, compact = fal
         <img
           src={exhibit.images[0]}
           alt={localized.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+          className="w-full h-full object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#15181D] via-transparent to-transparent opacity-80" />

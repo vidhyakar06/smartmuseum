@@ -569,6 +569,242 @@ export const seedExhibits: Exhibit[] = [
     medium: 'Oil on canvas',
     dimensions: '363 cm × 437 cm',
     createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-013',
+    exhibitId: 'EX013',
+    title: 'The Birth of Venus',
+    artist: 'Sandro Botticelli',
+    year: 'c. 1485',
+    category: 'Renaissance',
+    description: 'The goddess of love and beauty arrives ashore on a scallop shell, propelled by the breath of Zephyr into a shower of spring roses.',
+    longDescription: 'Painted for the Medici family, Botticelli revived classical mythological iconography on an unprecedented monumental scale. Venus stands in classical contrapposto, her golden tresses flowing in the sea breeze as an attendant of spring rushes to clothe her in a floral mantle.',
+    images: [
+      '/artworks/birth_of_venus.jpg'
+    ],
+    audioUrl: '/audio/birth_of_venus_en.mp3',
+    audioDuration: 155,
+    galleryId: 'GAL_A',
+    location: 'Gallery A - North Portico',
+    coordinates: { x: 80, y: 130, floor: 1 },
+    highlight: true,
+    featured: true,
+    curatorNotes: 'Tempera on canvas. One of the earliest Italian Renaissance works executed on canvas rather than wood panel.',
+    medium: 'Tempera on canvas',
+    dimensions: '172.5 cm × 278.9 cm (67.9 in × 109.8 in)',
+    translations: {
+      ta: {
+        title: 'வீனஸின் பிறப்பு',
+        description: 'சாண்ட்ரோ போத்திசெல்லியின் உலகப் புகழ்பெற்ற மறுமலர்ச்சி ஓவியம், கடலலையிலிருந்து வீனஸ் தேவதை சிப்பியில் தோன்றுவதை விவரிக்கிறது.',
+        category: 'மறுமலர்ச்சிக் கலை'
+      },
+      hi: {
+        title: 'वीनस का जन्म',
+        description: 'सैंड्रो बोतितिचेली की कालजयी पेंटिंग, जिसमें प्रेम और सौंदर्य की देवी वीनस को शंख से प्रकट होते दिखाया गया है।',
+        category: 'पुनर्जागरण कला'
+      },
+      fr: {
+        title: 'La Naissance de Vénus',
+        description: 'Chef-d\'œuvre de Sandro Botticelli montrant la déesse de l\'amour émergeant des eaux sur une conque marine.',
+        category: 'Renaissance'
+      },
+      es: {
+        title: 'El nacimiento de Venus',
+        description: 'Obra cumbre de Sandro Botticelli que representa a la diosa Venus emergiendo del mar sobre una concha dorada.',
+        category: 'Renacimiento'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-014',
+    exhibitId: 'EX014',
+    title: 'The Creation of Adam',
+    artist: 'Michelangelo Buonarroti',
+    year: 'c. 1512',
+    category: 'Renaissance Fresco',
+    description: 'The near-touching fingertips of God and Adam, capturing the spark of divine life transmitted to humanity.',
+    longDescription: 'Forming the iconic centerpiece of the Sistine Chapel ceiling in Rome, Michelangelo\'s fresco features God floating amid a billowing mantle shaped like a human brain, symbolizing intellect and divine consciousness bestowed upon mankind.',
+    images: [
+      '/artworks/creation_of_adam.jpg'
+    ],
+    audioUrl: '/audio/creation_of_adam_en.mp3',
+    audioDuration: 160,
+    galleryId: 'GAL_A',
+    location: 'Gallery A - Vaulted Ceiling Gallery',
+    coordinates: { x: 180, y: 50, floor: 1 },
+    highlight: true,
+    featured: true,
+    curatorNotes: 'Fresco technique painted directly on wet plaster while Michelangelo stood on elaborate scaffolding.',
+    medium: 'Fresco on plaster',
+    dimensions: '280 cm × 570 cm (110 in × 220 in)',
+    translations: {
+      ta: {
+        title: 'ஆதாமின் படைப்பு',
+        description: 'மைக்கேலேஞ்சலோவின் சிஸ்டைன் தேவாலய உச்சவரம்பு சுவரோவியம், கடவுளுக்கும் மனிதனுக்கும் இடையிலான தெய்வீகத் தொடுதலைக் காட்டுகிறது.',
+        category: 'மறுமலர்ச்சிக் கலை'
+      },
+      hi: {
+        title: 'आदम का निर्माण',
+        description: 'माइकलएंजेलो की सिस्टिन चैपल छत पर चित्रित प्रसिद्ध भित्तिचित्र, जो ईश्वरीय चेतना के संचरण को दर्शाता है।',
+        category: 'पुनर्जागरण कला'
+      },
+      fr: {
+        title: 'La Création d\'Adam',
+        description: 'Célèbre fresque de la chapelle Sixtine par Michel-Ange immortalisant les doigts effleurés de Dieu et d\'Adam.',
+        category: 'Renaissance'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-015',
+    exhibitId: 'EX015',
+    title: 'Water Lilies (Nymphéas)',
+    artist: 'Claude Monet',
+    year: '1916–1919',
+    category: 'Impressionism',
+    description: 'Luminous water flora and weeping willow branches mirrored on the shimmering pond of Giverny.',
+    longDescription: 'Monet spent the last thirty years of his life cultivating and painting his flower garden and Japanese water bridge at Giverny. His immense panoramic canvases dissolve traditional horizon lines, immersing the observer into atmospheric water reflections.',
+    images: [
+      '/artworks/water_lilies.jpg'
+    ],
+    audioUrl: '/audio/water_lilies_en.mp3',
+    audioDuration: 145,
+    galleryId: 'GAL_B',
+    location: 'Gallery B - Central Salon',
+    coordinates: { x: 390, y: 130, floor: 1 },
+    highlight: true,
+    featured: true,
+    curatorNotes: 'Exemplifies the climax of French Impressionism, blurring representation into early abstraction.',
+    medium: 'Oil on canvas',
+    dimensions: '200 cm × 200 cm (78.7 in × 78.7 in)',
+    translations: {
+      ta: {
+        title: 'தாமரை மலர்கள் (நிம்பியாஸ்)',
+        description: 'கிளாட் மோனேயின் புகழ்பெற்ற இம்ப்ரெஷனிச நீர் மலர் ஓவியம்.',
+        category: 'உணர்வுப்பின்னோக்குக் கலை'
+      },
+      hi: {
+        title: 'वाटर लिलीज (कुमुदिनी)',
+        description: 'क्लाउड मोने की अद्भुत जल-कुमुदिनी पेंटिंग, प्रभाववाद का उत्कृष्ट उदाहरण।',
+        category: 'प्रभाववाद'
+      },
+      fr: {
+        title: 'Les Nymphéas',
+        description: 'La féerie aquatique de Claude Monet à Giverny, chef-d\'œuvre mondial de l\'impressionnisme.',
+        category: 'Impressionnisme'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-016',
+    exhibitId: 'EX016',
+    title: 'Café Terrace at Night',
+    artist: 'Vincent van Gogh',
+    year: '1888',
+    category: 'Post-Impressionism',
+    description: 'An inviting, radiant open-air terrace in Arles bathed in golden gaslight beneath an intensely blue, star-strewn sky.',
+    longDescription: 'Van Gogh painted this scene directly on site in Place du Forum, Arles at night. Notably, he rendered this nocturnal painting entirely without using black, choosing instead brilliant contrasts of sulphur yellow, citron, and deep violet-blue.',
+    images: [
+      '/artworks/cafe_terrace.jpg'
+    ],
+    audioUrl: '/audio/cafe_terrace_en.mp3',
+    audioDuration: 140,
+    galleryId: 'GAL_B',
+    location: 'Gallery B - South Promenade',
+    coordinates: { x: 490, y: 150, floor: 1 },
+    highlight: true,
+    featured: false,
+    curatorNotes: 'First painting in which Van Gogh featured his signature swirling starry nocturnal skies.',
+    medium: 'Oil on canvas',
+    dimensions: '80.7 cm × 65.3 cm (31.8 in × 25.7 in)',
+    translations: {
+      ta: {
+        title: 'இரவு நேரக் காபி அரங்கம்',
+        description: 'வின்சென்ட் வான் கோவின் மின்னும் இரவு வானம் மற்றும் மஞ்சள் ஒளிரும் காபி கடை ஓவியம்.',
+        category: 'பின்-உணர்வுப்பின்னோக்குக் கலை'
+      },
+      hi: {
+        title: 'कैफे टेरेस एट नाइट',
+        description: 'विन्सेंट वैन गॉग द्वारा चित्रित रात का जादुई और रंगीन कैफे दृश्य।',
+        category: 'उत्तर-प्रभाववाद'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-017',
+    exhibitId: 'EX017',
+    title: 'Wanderer above the Sea of Fog',
+    artist: 'Caspar David Friedrich',
+    year: '1818',
+    category: 'Romanticism',
+    description: 'A contemplative mountaineer standing atop a rocky precipice, gazing out over a dense, swirling sea of mountain mist.',
+    longDescription: 'The defining icon of German Romanticism. Viewed from behind (Rückenfigur technique), the figure invites observers to project themselves into his perspective, experiencing nature\'s sublime majesty and existential wonder.',
+    images: [
+      '/artworks/wanderer_sea_fog.jpg'
+    ],
+    audioUrl: '/audio/wanderer_fog_en.mp3',
+    audioDuration: 135,
+    galleryId: 'GAL_B',
+    location: 'Gallery B - Panorama Wall',
+    coordinates: { x: 570, y: 130, floor: 1 },
+    highlight: true,
+    featured: false,
+    curatorNotes: 'Masterpiece of Romantic landscape philosophy and sublime aesthetic contemplation.',
+    medium: 'Oil on canvas',
+    dimensions: '94.8 cm × 74.8 cm (37.3 in × 29.4 in)',
+    translations: {
+      ta: {
+        title: 'பனிமூட்டக் கடலின் மேல் பயணி',
+        description: 'காஸ்பர் டேவிட் ஃபிரீட்ரிக்கின் ஜெர்மன் ரொமாண்டிசிச பாணி தத்துவார்த்த ஓவியம்.',
+        category: 'கற்பனாவாதம்'
+      },
+      hi: {
+        title: 'कोहरे के सागर के ऊपर पथिक',
+        description: 'कैस्पर डेविड फ्रेडरिक का जर्मन स्वच्छंदतावाद का प्रतीकात्मक उत्कृष्ट चित्र।',
+        category: 'स्वच्छंदतावाद'
+      }
+    },
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'EX-018',
+    exhibitId: 'EX018',
+    title: 'The Son of Man',
+    artist: 'René Magritte',
+    year: '1964',
+    category: 'Surrealism',
+    description: 'A gentleman in an overcoat and bowler hat with a crisp green apple mysteriously hovering in front of his face.',
+    longDescription: 'Magritte painted this as a self-portrait exploring the interplay between the visible and the hidden. As Magritte observed: "Everything we see hides another thing, we always want to see what is hidden by what we see."',
+    images: [
+      '/artworks/the_son_of_man.jpg'
+    ],
+    audioUrl: '/audio/son_of_man_en.mp3',
+    audioDuration: 130,
+    galleryId: 'GAL_C',
+    location: 'Gallery C - East Niche',
+    coordinates: { x: 720, y: 150, floor: 1 },
+    highlight: true,
+    featured: true,
+    curatorNotes: 'One of the most famous surrealist motifs of the 20th century.',
+    medium: 'Oil on canvas',
+    dimensions: '116 cm × 89 cm (45.6 in × 35 in)',
+    translations: {
+      ta: {
+        title: 'மனித குமாரன்',
+        description: 'ரெனே மேக்ரிட்டின் ஆப்பிள் முகம் மறைக்கும் புகழ்பெற்ற சர்ரியலிச ஓவியம்.',
+        category: 'மிகை எதார்த்தவாதம்'
+      },
+      hi: {
+        title: 'द सन ऑफ मैन',
+        description: 'रेने माग्रिट की प्रसिद्ध अतियथार्थवादी पेंटिंग, जिसमें चेहरे के आगे हरा सेब तैरता है।',
+        category: 'अतियथार्थवाद'
+      }
+    },
+    createdAt: new Date().toISOString()
   }
 ];
 

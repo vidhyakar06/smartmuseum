@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, NavLink, Link } from 'react-router-dom';
-import { Home, Compass, Map, Sparkles, Globe, Shield } from 'lucide-react';
+import { Home, Compass, Map, Sparkles, Globe, Shield, QrCode } from 'lucide-react';
 import { useVisitor } from '../contexts/VisitorContext.js';
 import { SUPPORTED_LANGUAGES } from '../services/translationService.js';
 import { BeaconBar } from '../components/BeaconBar.js';
@@ -130,6 +130,17 @@ export const VisitorLayout: React.FC = () => {
                 {t('navMap')}
               </NavLink>
               <NavLink
+                to="/scan"
+                className={({ isActive }) =>
+                  `px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${
+                    isActive ? 'text-museum-gold bg-museum-gold/10 font-bold' : 'text-museum-muted hover:text-white'
+                  }`
+                }
+              >
+                <QrCode size={13} />
+                <span>Scan QR</span>
+              </NavLink>
+              <NavLink
                 to="/ai"
                 className={({ isActive }) =>
                   `px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${
@@ -217,6 +228,18 @@ export const VisitorLayout: React.FC = () => {
           }
         >
           <Sparkles size={20} className="text-black" />
+        </NavLink>
+
+        <NavLink
+          to="/scan"
+          className={({ isActive }) =>
+            `flex flex-col items-center gap-1 text-[10px] font-medium transition-colors ${
+              isActive ? 'text-museum-gold' : 'text-museum-muted hover:text-white'
+            }`
+          }
+        >
+          <QrCode size={18} />
+          <span>Scan QR</span>
         </NavLink>
 
         <NavLink

@@ -13,6 +13,8 @@ import { IndoorMapPage } from './pages/IndoorMapPage.js';
 import { AIGuidePage } from './pages/AIGuidePage.js';
 import { LanguagePage } from './pages/LanguagePage.js';
 import { VisitorProfilePage } from './pages/VisitorProfilePage.js';
+import { QRScannerPage } from './pages/QRScannerPage.js';
+import { TicketVerificationPage } from './pages/TicketVerificationPage.js';
 
 // Admin Pages
 import { AdminLoginPage } from './pages/admin/AdminLoginPage.js';
@@ -44,7 +46,8 @@ export const App: React.FC = () => {
               <Route index element={<LandingPage />} />
               <Route path="explore" element={<ExplorePage />} />
               <Route path="exhibit/:id" element={<ExhibitDetailPage />} />
-              <Route path="scan" element={<Navigate to="/explore" replace />} />
+              <Route path="scan" element={<QRScannerPage />} />
+              <Route path="ticket/:id" element={<TicketVerificationPage />} />
               <Route path="map" element={<IndoorMapPage />} />
               <Route path="ai" element={<AIGuidePage />} />
               <Route path="languages" element={<LanguagePage />} />

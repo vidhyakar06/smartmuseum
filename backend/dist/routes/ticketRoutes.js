@@ -5,4 +5,6 @@ const ticketController_js_1 = require("../controllers/ticketController.js");
 const router = (0, express_1.Router)();
 router.get('/', ticketController_js_1.getTickets);
 router.post('/', ticketController_js_1.createTicket);
+router.get('/:id', ticketController_js_1.getTicketById);
+router.post('/:id/validate', ticketController_js_1.validateTicket);
 exports.default = router;

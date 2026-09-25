@@ -129,8 +129,18 @@ export const api = {
     return request<{ success: boolean; summary: any; data: Ticket[] }>('/tickets');
   },
 
-  async createTicket(payload: { visitorName: string; visitorEmail?: string; ticketType: string; amount: number }): Promise<{ success: boolean; data: Ticket }> {
-    return request<{ success: boolean; data: Ticket }>('/tickets', {
+  async getTicket(id: string): Promise<{ success: boolean; data: Ticket & { qrDataUrl?: string; ticketUrl?: string; valid?: boolean } }> {
+    return request<{ success: boolean; data: Ticket & { qrDataUrl?: string; ticketUrl?: string; valid?: boolean } }>(`/tickets/${id}`);
+  },
+
+  async validateTicket(id: string): Promise<{ success: boolean; data: Ticket; valid: boolean; message: string }> {
+    return request<{ success: boolean; data: Ticket; valid: boolean; message: string }>(`/tickets/${id}/validate`, {
+      method: 'POST'
+    });
+  },
+
+  async createTicket(payload: { visitorName: string; visitorEmail?: string; ticketType: string; amount: number }): Promise<{ success: boolean; data: Ticket & { qrDataUrl?: string; ticketUrl?: string } }> {
+    return request<{ success: boolean; data: Ticket & { qrDataUrl?: string; ticketUrl?: string } }>('/tickets', {
       method: 'POST',
       body: JSON.stringify(payload)
     });

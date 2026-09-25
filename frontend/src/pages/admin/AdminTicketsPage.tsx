@@ -215,9 +215,26 @@ export const AdminTicketsPage: React.FC = () => {
                   <p className="text-xs text-museum-muted mt-1">Paid: ₹{issuedTicket.amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 </div>
 
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  <a
+                    href={`/ticket/${issuedTicket.ticketId}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="py-2.5 px-3 bg-museum-elevated hover:bg-museum-border border border-museum-border text-museum-cyan text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 transition-colors"
+                  >
+                    <span>View Digital Pass</span>
+                  </a>
+                  <a
+                    href={`/scan`}
+                    className="py-2.5 px-3 bg-museum-elevated hover:bg-museum-border border border-museum-border text-museum-gold text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 transition-colors"
+                  >
+                    <span>Open Scanner</span>
+                  </a>
+                </div>
+
                 <button
                   onClick={() => setShowIssueModal(false)}
-                  className="w-full py-2.5 bg-museum-gold text-black font-bold text-xs rounded-xl"
+                  className="w-full py-2.5 bg-museum-gold text-black font-bold text-xs rounded-xl hover:scale-[1.01] transition-transform"
                 >
                   Done
                 </button>

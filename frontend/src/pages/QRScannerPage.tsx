@@ -91,17 +91,32 @@ export const QRScannerPage: React.FC = () => {
 
     api.track('qr-scan', undefined, undefined, { raw: decodedText, method: 'camera' });
 
-    // Extract exhibit ID if text is a URL or direct ID
-    // E.g. https://museum.domain/exhibit/EX001 or /exhibit/EX001 or EX001
-    const match = decodedText.match(/EX\d{3}/i);
-    if (match) {
+    // 1. Check if scanned code is an Admission Ticket (e.g. TCK-..., MUSEUM_TICKET:..., /ticket/TCK-...)
+    const ticketMatch = decodedText.match(/TCK-[\w-]+/i) || decodedText.match(/MUSEUM_TICKET:([^\s:]+)/i);
+    if (ticketMatch || decodedText.includes('/ticket/')) {
+      const ticketId = ticketMatch
+        ? (ticketMatch[1] || ticketMatch[0])
+        : decodedText.split('/ticket/')[1]?.split(/[?#]/)[0];
+
+      if (ticketId) {
+        setScannedResult(`Verified Admission Ticket: ${ticketId}`);
+        setTimeout(() => {
+          navigate(`/ticket/${ticketId}`);
+        }, 500);
+        return;
+      }
+    }
+
+    // 2. Check if scanned code is an Exhibit ID or Exhibit URL (e.g. EX001 or /exhibit/EX001)
+    const match = decodedText.match(/EX\d{3}/i) || (decodedText.includes('/exhibit/') ? [decodedText.split('/exhibit/')[1]?.split(/[?#]/)[0]] : null);
+    if (match && match[0]) {
       const exId = match[0].toUpperCase();
       markVisited(exId);
       setTimeout(() => {
         navigate(`/exhibit/${exId}`);
       }, 500);
     } else {
-      setCameraError(`Scanned code "${decodedText}" is not a recognized museum exhibit QR code.`);
+      setCameraError(`Scanned code "${decodedText}" is not recognized as a valid museum exhibit or admission ticket.`);
     }
   };
 
@@ -109,6 +124,11 @@ export const QRScannerPage: React.FC = () => {
     markVisited(exhibitId);
     api.track('qr-scan', exhibitId, undefined, { method: 'demo-quick-click' });
     navigate(`/exhibit/${exhibitId}`);
+  };
+
+  const handleQuickTicketClick = (ticketId: string) => {
+    api.track('qr-scan', undefined, undefined, { raw: ticketId, method: 'ticket-quick-click' });
+    navigate(`/ticket/${ticketId}`);
   };
 
   return (
@@ -219,6 +239,25 @@ export const QRScannerPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {/* Demo Ticket Scan Chip */}
+          <button
+            onClick={() => handleQuickTicketClick('TCK-20260925-1284')}
+            className="p-3 rounded-xl bg-gradient-to-tr from-yellow-950/40 to-yellow-900/20 hover:bg-yellow-900/40 border border-museum-gold/50 text-left transition-all group flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-museum-gold text-black font-bold">
+                TICKET
+              </span>
+              <QrCode size={13} className="text-museum-gold group-hover:scale-110 transition-transform" />
+            </div>
+            <div className="text-xs font-semibold text-museum-gold group-hover:text-yellow-300 transition-colors line-clamp-1">
+              Admission Pass
+            </div>
+            <div className="text-[10px] text-museum-muted truncate mt-0.5">
+              Vicky (TCK-20260925-1284)
+            </div>
+          </button>
+
           {exhibits.map(ex => (
             <button
               key={ex.exhibitId}

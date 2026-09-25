@@ -31,11 +31,18 @@ app.use(express.static('public'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
+  const activeAi = process.env.GEMINI_API_KEY
+    ? `gemini (${process.env.GEMINI_MODEL || 'gemini-2.5-flash'})`
+    : process.env.GROQ_API_KEY
+      ? 'groq-llama'
+      : 'local-art-expert';
+
   res.json({
     status: 'online',
     system: 'Smart Museum & Interactive Art Guide API',
     timestamp: new Date().toISOString(),
-    demoMode: process.env.DEMO_MODE === 'true' || !process.env.GROQ_API_KEY
+    demoMode: process.env.DEMO_MODE === 'true' || (!process.env.GEMINI_API_KEY && !process.env.GROQ_API_KEY),
+    aiEngine: activeAi
   });
 });
 
@@ -55,10 +62,16 @@ app.use(errorHandler);
 // Connect DB and Start Server
 connectDB().then(() => {
   app.listen(PORT, () => {
+    const aiBanner = process.env.GEMINI_API_KEY
+      ? `✨ Google Gemini AI Active (${process.env.GEMINI_MODEL || 'gemini-2.5-flash'})`
+      : process.env.GROQ_API_KEY
+        ? '⚡ Groq LLaMA 3.3 Active'
+        : '🤖 Autonomous Art Expert Engine (Offline/Local Mode)';
+
     console.log(`====================================================`);
     console.log(`🏛️  Smart Museum & Interactive Art Guide API Online`);
     console.log(`🚀  Server running on http://localhost:${PORT}`);
-    console.log(`🤖  AI Mode: ${process.env.GROQ_API_KEY ? 'Groq LLaMA 3.3 Active' : 'Autonomous Art Expert Engine (Offline/Demo Mode)'}`);
+    console.log(`🤖  AI Mode: ${aiBanner}`);
     console.log(`💾  Database: ${process.env.MONGODB_URI ? 'MongoDB Atlas' : 'In-Memory Museum Store'}`);
     console.log(`====================================================`);
   });

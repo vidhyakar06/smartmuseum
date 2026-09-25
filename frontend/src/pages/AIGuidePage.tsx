@@ -48,6 +48,7 @@ export const AIGuidePage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isThinking, setIsThinking] = useState(false);
+  const [activeEngine, setActiveEngine] = useState<string>('Google Gemini');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Load exhibits
@@ -66,15 +67,15 @@ export const AIGuidePage: React.FC = () => {
   // Initial welcome message from AI
   useEffect(() => {
     const welcome = selectedExhibit
-      ? `Greetings! I am Athena, your AI Curatorial Guide. I am loaded with deep scholarly knowledge about "${selectedExhibit.title}" by ${selectedExhibit.artist}. How may I illuminate your experience today?`
-      : 'Welcome to the Smart Museum! I am Athena, your AI Art Historian and Interactive Guide. You can ask me about our permanent galleries, art movements, or select any artwork for deep curatorial analysis.';
+      ? `Greetings! I am Athena, your AI Curatorial Guide powered by Google Gemini. I am loaded with deep scholarly knowledge about "${selectedExhibit.title}" by ${selectedExhibit.artist}. How may I illuminate your experience today?`
+      : 'Welcome to the Smart Museum! I am Athena, your AI Art Historian and Interactive Guide powered by Google Gemini. You can ask me about our permanent galleries, art movements, or select any artwork for deep curatorial analysis.';
 
     setMessages([
       {
         sender: 'assistant',
         text: welcome,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        source: 'groq-llama'
+        source: 'gemini-flash'
       }
     ]);
   }, [selectedExhibit?.exhibitId]);
@@ -112,6 +113,14 @@ export const AIGuidePage: React.FC = () => {
       });
 
       if (res.success && res.data) {
+        if (res.data.source === 'gemini-flash') {
+          setActiveEngine('Google Gemini');
+        } else if (res.data.source === 'groq-llama') {
+          setActiveEngine('Groq LLaMA 3.3');
+        } else if (res.data.source === 'local-art-expert') {
+          setActiveEngine('Offline Art Expert');
+        }
+
         setMessages(prev => [
           ...prev,
           {
@@ -176,8 +185,9 @@ export const AIGuidePage: React.FC = () => {
           <div>
             <h2 className="text-base font-serif font-bold text-white flex items-center gap-2">
               <span>{t('aiGuideTitle')}</span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-museum-cyan/15 text-museum-cyan border border-museum-cyan/30">
-                Groq LLaMA 3.3
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-museum-cyan/15 text-museum-cyan border border-museum-cyan/30 flex items-center gap-1">
+                <Sparkles size={11} />
+                {activeEngine}
               </span>
             </h2>
             <p className="text-xs text-museum-muted">
@@ -297,7 +307,11 @@ export const AIGuidePage: React.FC = () => {
               <div className="flex items-center justify-between text-[10px] opacity-75 pt-1">
                 <span>{msg.timestamp}</span>
                 <div className="flex items-center gap-3">
-                  {msg.source && <span>Engine: {msg.source}</span>}
+                  {msg.source && (
+                    <span>
+                      Engine: {msg.source === 'gemini-flash' ? 'Google Gemini' : msg.source === 'groq-llama' ? 'Groq LLaMA' : 'Local Art Expert'}
+                    </span>
+                  )}
                   <button
                     onClick={() => audioService.playNarration(msg.text, language)}
                     className="flex items-center gap-1 text-museum-gold hover:text-museum-gold-light hover:underline font-medium"

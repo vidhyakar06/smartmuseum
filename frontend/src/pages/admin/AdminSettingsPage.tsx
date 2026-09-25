@@ -62,15 +62,15 @@ export const AdminSettingsPage: React.FC = () => {
             </div>
             <div>
               <h3 className="text-sm font-bold text-white">AI Art Historian Service</h3>
-              <p className="text-xs text-museum-muted font-mono">Groq LLaMA 3.3</p>
+              <p className="text-xs text-museum-muted font-mono">Google Gemini Flash</p>
             </div>
           </div>
 
           <div className="space-y-3 text-xs">
             <div className="p-3 rounded-xl bg-museum-elevated border border-museum-border flex items-center justify-between">
               <div>
-                <p className="font-semibold text-white">AI Engine</p>
-                <p className="text-museum-muted text-[11px]">Autonomous Museum Knowledge Fallback</p>
+                <p className="font-semibold text-white">Primary AI Engine</p>
+                <p className="text-museum-muted text-[11px]">Google Gemini 2.5 / 2.0 / 1.5 Flash</p>
               </div>
               <span className="px-2 py-0.5 rounded bg-museum-cyan/15 text-museum-cyan font-mono text-[10px]">
                 READY
@@ -78,7 +78,7 @@ export const AdminSettingsPage: React.FC = () => {
             </div>
 
             <p className="text-museum-muted text-[11px] leading-relaxed">
-              Add <code className="text-museum-gold">GROQ_API_KEY</code> to enable live ultra-fast cloud LLaMA 3.3 inference with custom system curatorial prompt.
+              Add your <code className="text-museum-gold">GEMINI_API_KEY</code> in <code className="text-museum-gold">backend/.env</code> to enable live conversational art analysis with curatorial grounding.
             </p>
           </div>
         </div>

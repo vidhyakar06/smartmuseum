@@ -27,11 +27,18 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 app.get('/api/health', (_req, res) => {
+  const activeAi = process.env.GEMINI_API_KEY
+    ? `gemini (${process.env.GEMINI_MODEL || 'gemini-2.5-flash'})`
+    : process.env.GROQ_API_KEY
+      ? 'groq-llama'
+      : 'local-art-expert';
+
   res.json({
     status: 'online',
     system: 'Smart Museum & Interactive Art Guide API',
     timestamp: new Date().toISOString(),
-    demoMode: process.env.DEMO_MODE === 'true' || !process.env.GROQ_API_KEY
+    demoMode: process.env.DEMO_MODE === 'true' || (!process.env.GEMINI_API_KEY && !process.env.GROQ_API_KEY),
+    aiEngine: activeAi
   });
 });
 

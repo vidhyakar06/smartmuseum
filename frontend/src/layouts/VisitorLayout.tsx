@@ -5,6 +5,7 @@ import { useVisitor } from '../contexts/VisitorContext.js';
 import { SUPPORTED_LANGUAGES } from '../services/translationService.js';
 import { BeaconBar } from '../components/BeaconBar.js';
 import { AudioPlayer } from '../components/AudioPlayer.js';
+import { AIChatbotWidget } from '../components/AIChatbotWidget.js';
 
 export const VisitorLayout: React.FC = () => {
   const { language, setLanguage, t } = useVisitor();
@@ -175,6 +176,9 @@ export const VisitorLayout: React.FC = () => {
 
       {/* Persistent Audio Guide Player */}
       <AudioPlayer />
+
+      {/* Floating AI Chatbot Assistant */}
+      <AIChatbotWidget />
 
       {/* Mobile-First Bottom Navigation Bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0E1116]/95 backdrop-blur-xl border-t border-museum-border/70 py-2 px-2 flex items-center justify-around">

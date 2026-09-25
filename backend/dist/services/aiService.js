@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.askAIGuide = askAIGuide;
+const genai_1 = require("@google/genai");
 const groq_sdk_1 = __importDefault(require("groq-sdk"));
 const db_js_1 = require("../config/db.js");
 const languageNames = {
@@ -34,16 +35,12 @@ async function askAIGuide(req) {
         category: e.category,
         location: e.location
     }));
-    const groqApiKey = process.env.GROQ_API_KEY;
-    if (groqApiKey && process.env.DEMO_MODE !== 'true') {
-        try {
-            const groq = new groq_sdk_1.default({ apiKey: groqApiKey });
-            const targetLangName = languageNames[language] || 'English';
-            let systemPrompt = `You are "Athena", the AI Conversational Art Expert and Interactive Guide for the Smart Museum.
+    const targetLangName = languageNames[language] || 'English';
+    let systemPrompt = `You are "Athena", the AI Conversational Art Expert and Interactive Guide for the Smart Museum.
 Your tone is warm, culturally insightful, concise, and engaging (keep responses under 130 words unless asked for a deep dive).
 You must respond in ${targetLangName}.`;
-            if (currentExhibit) {
-                systemPrompt += `
+    if (currentExhibit) {
+        systemPrompt += `
 The visitor is currently viewing this artwork:
 - Title: ${currentExhibit.title}
 - Artist: ${currentExhibit.artist}
@@ -59,11 +56,85 @@ The visitor is currently viewing this artwork:
 Use this context to answer accurately. Never invent false dates or unverified museum facts.
 If the visitor asks for "simple English" or "explain to a child", make it intuitive and story-like.
 If the visitor asks about nearby artworks, refer to items in ${currentExhibit.galleryId}.`;
+    }
+    else {
+        systemPrompt += `
+The visitor is asking a general museum or art history question. Guide them with curatorial wisdom.`;
+    }
+    // 1. Primary Engine: Google Gemini AI
+    const geminiApiKey = process.env.GEMINI_API_KEY;
+    if (geminiApiKey && process.env.DEMO_MODE !== 'true') {
+        try {
+            const ai = new genai_1.GoogleGenAI({ apiKey: geminiApiKey });
+            // Gemini strictly requires contents to start with role 'user' and alternate roles
+            const contents = [];
+            // Filter non-empty history and start only from the first user message
+            const validHistory = history.filter(h => h.text && h.text.trim().length > 0);
+            const firstUserIdx = validHistory.findIndex(h => h.sender === 'user');
+            if (firstUserIdx !== -1) {
+                const historySlice = validHistory.slice(firstUserIdx);
+                let expectedRole = 'user';
+                for (const h of historySlice) {
+                    const role = h.sender === 'user' ? 'user' : 'model';
+                    if (role === expectedRole) {
+                        contents.push({ role, parts: [{ text: h.text }] });
+                        expectedRole = expectedRole === 'user' ? 'model' : 'user';
+                    }
+                }
+            }
+            // Add current user prompt
+            if (contents.length > 0 && contents[contents.length - 1].role === 'user') {
+                contents[contents.length - 1].parts.push({ text: message });
             }
             else {
-                systemPrompt += `
-The visitor is asking a general museum or art history question. Guide them with curatorial wisdom.`;
+                contents.push({
+                    role: 'user',
+                    parts: [{ text: message }]
+                });
             }
+            const modelsToTry = [
+                process.env.GEMINI_MODEL,
+                'gemini-2.0-flash',
+                'gemini-1.5-flash',
+                'gemini-2.5-flash'
+            ].filter((m, i, arr) => Boolean(m) && arr.indexOf(m) === i);
+            let lastError = null;
+            for (const model of modelsToTry) {
+                try {
+                    const response = await ai.models.generateContent({
+                        model,
+                        contents,
+                        config: {
+                            systemInstruction: systemPrompt,
+                            temperature: 0.6,
+                            maxOutputTokens: 400
+                        }
+                    });
+                    const answer = response.text?.trim() || 'I am happy to assist your exploration of our gallery.';
+                    return {
+                        answer,
+                        relatedExhibits,
+                        source: 'gemini-flash'
+                    };
+                }
+                catch (mErr) {
+                    lastError = mErr;
+                    console.warn(`⚠️  Gemini model "${model}" failed (${mErr.message}), trying alternative...`);
+                }
+            }
+            if (lastError) {
+                console.warn('⚠️  All Gemini models failed. Falling back to secondary engine.');
+            }
+        }
+        catch (err) {
+            console.warn('⚠️  Gemini API error (' + err.message + '). Attempting fallback...');
+        }
+    }
+    // 2. Secondary Engine: Groq LLaMA
+    const groqApiKey = process.env.GROQ_API_KEY;
+    if (groqApiKey && process.env.DEMO_MODE !== 'true') {
+        try {
+            const groq = new groq_sdk_1.default({ apiKey: groqApiKey });
             const formattedMessages = [
                 { role: 'system', content: systemPrompt }
             ];
@@ -93,7 +164,7 @@ The visitor is asking a general museum or art history question. Guide them with 
             console.warn('⚠️  Groq API call failed (' + err.message + '). Falling back to Local Art Expert Engine.');
         }
     }
-    // Fallback Local Contextual Museum AI Engine
+    // 3. Fallback: Local Contextual Museum AI Engine
     const answer = generateLocalAIResponse(message, currentExhibit, language);
     return {
         answer,

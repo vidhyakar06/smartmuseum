@@ -5,6 +5,7 @@ import { useVisitor } from '../contexts/VisitorContext.js';
 import { api, getVisitorSessionId } from '../services/api.js';
 import { Exhibit } from '../types/index.js';
 import { ExhibitCard } from '../components/ExhibitCard.js';
+import { translationService } from '../services/translationService.js';
 
 export const VisitorProfilePage: React.FC = () => {
   const { favorites, visitedExhibits, currentLocation, language } = useVisitor();
@@ -48,7 +49,9 @@ export const VisitorProfilePage: React.FC = () => {
             </div>
             <div>
               <p className="text-museum-muted text-[11px]">Current Zone</p>
-              <p className="text-xs font-semibold text-museum-cyan truncate">{currentLocation.name.split(' - ')[0]}</p>
+              <p className="text-xs font-semibold text-museum-cyan truncate">
+                {translationService.getLocationName(currentLocation.name, language).split(' - ')[0]}
+              </p>
             </div>
           </div>
         </div>

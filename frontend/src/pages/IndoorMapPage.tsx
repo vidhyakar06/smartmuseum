@@ -5,12 +5,13 @@ import { api } from '../services/api.js';
 import { Exhibit, Gallery } from '../types/index.js';
 import { FloorMap } from '../components/FloorMap.js';
 import { useVisitor } from '../contexts/VisitorContext.js';
+import { translationService } from '../services/translationService.js';
 
 export const IndoorMapPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const targetFromUrl = searchParams.get('target') || undefined;
 
-  const { currentLocation, setBeacon, t } = useVisitor();
+  const { currentLocation, setBeacon, t, language } = useVisitor();
   const [exhibits, setExhibits] = useState<Exhibit[]>([]);
   const [galleries, setGalleries] = useState<Gallery[]>([]);
   const [loading, setLoading] = useState(true);
@@ -48,7 +49,7 @@ export const IndoorMapPage: React.FC = () => {
           </div>
           <div>
             <span className="text-museum-muted text-[10px] block uppercase font-mono">Current Zone</span>
-            <span className="text-white font-bold">{currentLocation.name.split(' - ')[0]}</span>
+            <span className="text-white font-bold">{translationService.getLocationName(currentLocation.name, language).split(' - ')[0]}</span>
           </div>
         </div>
       </div>

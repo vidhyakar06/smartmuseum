@@ -4,9 +4,10 @@ import { useVisitor } from '../contexts/VisitorContext.js';
 import { BEACON_CHECKPOINTS } from '../services/locationService.js';
 import { api } from '../services/api.js';
 import { Gallery } from '../types/index.js';
+import { translationService } from '../services/translationService.js';
 
 export const BeaconBar: React.FC = () => {
-  const { currentLocation, setBeacon, t } = useVisitor();
+  const { currentLocation, setBeacon, t, language } = useVisitor();
   const [isOpen, setIsOpen] = useState(false);
   const [galleries, setGalleries] = useState<Gallery[]>([]);
 
@@ -28,8 +29,10 @@ export const BeaconBar: React.FC = () => {
             <Radio size={13} className="animate-pulse" />
           </div>
           <div className="truncate">
-            <span className="text-museum-muted font-medium">Beacon: </span>
-            <span className="text-white font-semibold">{currentLocation.name}</span>
+            <span className="text-museum-muted font-medium">{t('beacon')}: </span>
+            <span className="text-white font-semibold">
+              {translationService.getLocationName(currentLocation.name, language)}
+            </span>
           </div>
         </div>
 
@@ -37,7 +40,7 @@ export const BeaconBar: React.FC = () => {
         {isCrowded && (
           <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-950/80 text-red-300 border border-red-500/40 animate-pulse">
             <AlertTriangle size={12} />
-            <span className="font-medium">Capacity Alert ({currentGalleryData?.occupancyRatio}%)</span>
+            <span className="font-medium">{t('capacityAlert')} ({currentGalleryData?.occupancyRatio}%)</span>
           </div>
         )}
 
@@ -46,7 +49,7 @@ export const BeaconBar: React.FC = () => {
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-museum-elevated hover:bg-museum-border text-museum-gold border border-museum-gold/20 font-medium transition-all"
         >
-          <span>Simulate Beacon</span>
+          <span>{t('simulateBeacon')}</span>
           <ChevronRight size={13} className={`transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`} />
         </button>
       </div>
@@ -59,17 +62,17 @@ export const BeaconBar: React.FC = () => {
               <div>
                 <h4 className="text-sm font-semibold text-white flex items-center gap-2">
                   <Navigation2 size={15} className="text-museum-cyan" />
-                  Bluetooth Low Energy (BLE) Beacon Simulator
+                  {t('bleBeaconSimulator')}
                 </h4>
                 <p className="text-museum-muted text-xs">
-                  Click a checkpoint to simulate physical visitor movement through museum zones.
+                  {t('bleSimulatorDesc')}
                 </p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-xs text-museum-muted hover:text-white px-2 py-1 bg-white/5 rounded"
               >
-                Close
+                {t('close')}
               </button>
             </div>
 
@@ -78,6 +81,7 @@ export const BeaconBar: React.FC = () => {
                 const isSelected = currentLocation.beaconId === checkpoint.beaconId;
                 const galleryInfo = galleries.find(g => g.galleryId === checkpoint.galleryId);
                 const isHighTraffic = galleryInfo?.alertLevel === 'red';
+                const localizedName = translationService.getLocationName(checkpoint.name, language);
 
                 return (
                   <button
@@ -96,11 +100,11 @@ export const BeaconBar: React.FC = () => {
                       <span className="font-mono text-[10px] text-museum-cyan truncate">{checkpoint.beaconId}</span>
                       {isSelected && <Check size={13} className="text-museum-gold flex-shrink-0" />}
                     </div>
-                    <div className="text-xs font-semibold text-white truncate">{checkpoint.name.split(' - ')[0]}</div>
+                    <div className="text-xs font-semibold text-white truncate">{localizedName.split(' - ')[0]}</div>
                     <div className="text-[10px] text-museum-muted mt-1 flex items-center justify-between">
-                      <span>Floor {checkpoint.floor}</span>
+                      <span>{t('floor')} {checkpoint.floor}</span>
                       {isHighTraffic && (
-                        <span className="text-red-400 font-bold">Crowded</span>
+                        <span className="text-red-400 font-bold">{t('crowded')}</span>
                       )}
                     </div>
                   </button>

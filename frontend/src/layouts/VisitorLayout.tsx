@@ -25,10 +25,10 @@ export const VisitorLayout: React.FC = () => {
             </div>
             <div>
               <span className="font-serif font-bold text-lg tracking-wide text-white group-hover:text-museum-gold transition-colors">
-                Smart Museum
+                {t('smartMuseum')}
               </span>
               <span className="block text-[10px] text-museum-gold uppercase tracking-widest font-mono">
-                Interactive Art Guide
+                {t('interactiveArtGuide')}
               </span>
             </div>
           </Link>
@@ -63,13 +63,13 @@ export const VisitorLayout: React.FC = () => {
               {isLangOpen && (
                 <div className="absolute right-0 mt-2 w-56 bg-[#15181D] border border-museum-gold/40 rounded-2xl shadow-2xl py-2 z-50 animate-in fade-in zoom-in-95 duration-150">
                   <div className="px-3.5 py-1.5 text-[10px] uppercase font-bold text-museum-gold border-b border-museum-border/50 flex items-center justify-between">
-                    <span>9 Supported Languages</span>
+                    <span>{t('supportedLanguagesCount')}</span>
                     <Link
                       to="/languages"
                       onClick={() => setIsLangOpen(false)}
                       className="text-[10px] text-museum-cyan hover:underline lowercase"
                     >
-                      view all
+                      {t('viewAll')}
                     </Link>
                   </div>
                   <div className="max-h-72 overflow-y-auto py-1">
@@ -138,7 +138,7 @@ export const VisitorLayout: React.FC = () => {
                 }
               >
                 <QrCode size={13} />
-                <span>Scan QR</span>
+                <span>{t('navScan')}</span>
               </NavLink>
               <NavLink
                 to="/ai"
@@ -171,7 +171,7 @@ export const VisitorLayout: React.FC = () => {
               title="Museum Staff / Admin Portal"
             >
               <Shield size={13} className="text-museum-gold" />
-              <span className="hidden sm:inline font-mono">Admin</span>
+              <span className="hidden sm:inline font-mono">{t('admin')}</span>
             </Link>
           </div>
         </div>
@@ -239,7 +239,7 @@ export const VisitorLayout: React.FC = () => {
           }
         >
           <QrCode size={18} />
-          <span>Scan QR</span>
+          <span>{t('navScan')}</span>
         </NavLink>
 
         <NavLink

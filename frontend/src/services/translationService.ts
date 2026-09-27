@@ -118,6 +118,189 @@ const EXHIBIT_LONG_DESCRIPTIONS: Record<string, Partial<Record<SupportedLanguage
   }
 };
 
+export const LOCATION_NAMES: Record<SupportedLanguage, Record<string, string>> = {
+  en: {
+    'Main Entrance & Atrium': 'Main Entrance & Atrium',
+    'Gallery A - Renaissance': 'Gallery A - Renaissance',
+    'Gallery B - Impressionism': 'Gallery B - Impressionism',
+    'Gallery C - Modern & Surrealism': 'Gallery C - Modern & Surrealism',
+    'Gallery D - Sculptures': 'Gallery D - Sculptures',
+    'Gallery E - Asian Heritage': 'Gallery E - Asian Heritage',
+    'Main Entrance': 'Main Entrance',
+    'Gallery A': 'Gallery A',
+    'Gallery B': 'Gallery B',
+    'Gallery C': 'Gallery C',
+    'Gallery D': 'Gallery D',
+    'Gallery E': 'Gallery E',
+    'ATRIUM': 'Main Entrance & Atrium',
+    'GAL_A': 'Gallery A - Renaissance',
+    'GAL_B': 'Gallery B - Impressionism',
+    'GAL_C': 'Gallery C - Modern & Surrealism',
+    'GAL_D': 'Gallery D - Sculptures',
+    'GAL_E': 'Gallery E - Asian Heritage'
+  },
+  ta: {
+    'Main Entrance & Atrium': 'முதன்மை நுழைவாயில் & ஏட்ரியம்',
+    'Gallery A - Renaissance': 'காட்சியகம் A - மறுமலர்ச்சி',
+    'Gallery B - Impressionism': 'காட்சியகம் B - இம்ப்ரெஷனிசம்',
+    'Gallery C - Modern & Surrealism': 'காட்சியகம் C - நவீன & சர்ரியலிசம்',
+    'Gallery D - Sculptures': 'காட்சியகம் D - சிற்பங்கள்',
+    'Gallery E - Asian Heritage': 'காட்சியகம் E - ஆசிய பாரம்பரியம்',
+    'Main Entrance': 'முதன்மை நுழைவாயில்',
+    'Gallery A': 'காட்சியகம் A',
+    'Gallery B': 'காட்சியகம் B',
+    'Gallery C': 'காட்சியகம் C',
+    'Gallery D': 'காட்சியகம் D',
+    'Gallery E': 'காட்சியகம் E',
+    'ATRIUM': 'முதன்மை நுழைவாயில் & ஏட்ரியம்',
+    'GAL_A': 'காட்சியகம் A - மறுமலர்ச்சி',
+    'GAL_B': 'காட்சியகம் B - இம்ப்ரெஷனிசம்',
+    'GAL_C': 'காட்சியகம் C - நவீன & சர்ரியலிசம்',
+    'GAL_D': 'காட்சியகம் D - சிற்பங்கள்',
+    'GAL_E': 'காட்சியகம் E - ஆசிய பாரம்பரியம்'
+  },
+  hi: {
+    'Main Entrance & Atrium': 'मुख्य प्रवेश द्वार एवं अत्रियम',
+    'Gallery A - Renaissance': 'गैलरी A - पुनर्जागरण काल',
+    'Gallery B - Impressionism': 'गैलरी B - प्रभाववाद',
+    'Gallery C - Modern & Surrealism': 'गैलरी C - आधुनिक एवं अतियथार्थवाद',
+    'Gallery D - Sculptures': 'गैलरी D - मूर्तिकला',
+    'Gallery E - Asian Heritage': 'गैलरी E - एशियाई विरासत',
+    'Main Entrance': 'मुख्य प्रवेश द्वार',
+    'Gallery A': 'गैलरी A',
+    'Gallery B': 'गैलरी B',
+    'Gallery C': 'गैलरी C',
+    'Gallery D': 'गैलरी D',
+    'Gallery E': 'गैलरी E',
+    'ATRIUM': 'मुख्य प्रवेश द्वार एवं अत्रियम',
+    'GAL_A': 'गैलरी A - पुनर्जागरण काल',
+    'GAL_B': 'गैलरी B - प्रभाववाद',
+    'GAL_C': 'गैलरी C - आधुनिक एवं अतियथार्थवाद',
+    'GAL_D': 'गैलरी D - मूर्तिकला',
+    'GAL_E': 'गैलरी E - एशियाई विरासत'
+  },
+  ml: {
+    'Main Entrance & Atrium': 'പ്രധാന കവാടം & ഏട്രിയം',
+    'Gallery A - Renaissance': 'ഗ്യാലറി A - നവോത്ഥാനം',
+    'Gallery B - Impressionism': 'ഗ്യാലറി B - ഇംപ്രഷനിസം',
+    'Gallery C - Modern & Surrealism': 'ഗ്യാലറി C - ആധുനികം & സർറിയലിസം',
+    'Gallery D - Sculptures': 'ഗ്യാലറി D - ശിൽപങ്ങൾ',
+    'Gallery E - Asian Heritage': 'ഗ്യാലറി E - ഏഷ്യൻ പൈതൃകം',
+    'Main Entrance': 'പ്രധാന കവാടം',
+    'Gallery A': 'ഗ്യാലറി A',
+    'Gallery B': 'ഗ്യാലറി B',
+    'Gallery C': 'ഗ്യാലറി C',
+    'Gallery D': 'ഗ്യാലറി D',
+    'Gallery E': 'ഗ്യാലറി E',
+    'ATRIUM': 'പ്രധാന കവാടം & ഏട്രിയം',
+    'GAL_A': 'ഗ്യാലറി A - നവോത്ഥാനം',
+    'GAL_B': 'ഗ്യാലറി B - ഇംപ്രഷനിസം',
+    'GAL_C': 'ഗ്യാലറി C - ആധുനികം & സർറിയലിസം',
+    'GAL_D': 'ഗ്യാലറി D - ശിൽപങ്ങൾ',
+    'GAL_E': 'ഗ്യാലറി E - ഏഷ്യൻ പൈതൃകം'
+  },
+  te: {
+    'Main Entrance & Atrium': 'ప్రధాన ప్రవేశ ద్వారం & ఆట్రియం',
+    'Gallery A - Renaissance': 'గ్యాలరీ A - పునరుజ్జీవనం',
+    'Gallery B - Impressionism': 'గ్యాలరీ B - ఇంప్రెషనిజం',
+    'Gallery C - Modern & Surrealism': 'గ్యాలరీ C - ఆధునిక & సర్రియలిజం',
+    'Gallery D - Sculptures': 'గ్యాలరీ D - శిల్పాలు',
+    'Gallery E - Asian Heritage': 'గ్యాలరీ E - ఆసియా వారసత్వం',
+    'Main Entrance': 'ప్రధాన ప్రవేశ ద్వారం',
+    'Gallery A': 'గ్యాలరీ A',
+    'Gallery B': 'గ్యాలరీ B',
+    'Gallery C': 'గ్యాలరీ C',
+    'Gallery D': 'గ్యాలరీ D',
+    'Gallery E': 'గ్యాలరీ E',
+    'ATRIUM': 'ప్రధాన ప్రవేశ ద్వారం & ఆట్రియం',
+    'GAL_A': 'గ్యాలరీ A - పునరుజ్జీవనం',
+    'GAL_B': 'గ్యాలరీ B - ఇంప్రెషనిజం',
+    'GAL_C': 'గ్యాలరీ C - ఆధునిక & సర్రియలిజం',
+    'GAL_D': 'గ్యాలరీ D - శిల్పాలు',
+    'GAL_E': 'గ్యాలరీ E - ఆసియా వారసత్వం'
+  },
+  kn: {
+    'Main Entrance & Atrium': 'ಮುಖ್ಯ ಪ್ರವೇಶದ್ವಾರ & ಹೃತ್ಕುಕ್ಷಿ',
+    'Gallery A - Renaissance': 'ಗ್ಯಾಲರಿ A - ನವೋದಯ',
+    'Gallery B - Impressionism': 'ಗ್ಯಾಲರಿ B - ಇಂಪ್ರೆಷನಿಸಂ',
+    'Gallery C - Modern & Surrealism': 'ಗ್ಯಾಲರಿ C - ಆಧುನಿಕ & ಅತಿವಾಸ್ತವಿಕತೆ',
+    'Gallery D - Sculptures': 'ಗ್ಯಾಲರಿ D - ಶಿಲ್ಪಗಳು',
+    'Gallery E - Asian Heritage': 'ಗ್ಯಾಲರಿ E - ಏಷ್ಯನ್ ಪರಂಪರೆ',
+    'Main Entrance': 'ಮುಖ್ಯ ಪ್ರವೇಶದ್ವಾರ',
+    'Gallery A': 'ಗ್ಯಾಲರಿ A',
+    'Gallery B': 'ಗ್ಯಾಲರಿ B',
+    'Gallery C': 'ಗ್ಯಾಲರಿ C',
+    'Gallery D': 'ಗ್ಯಾಲರಿ D',
+    'Gallery E': 'ಗ್ಯಾಲರಿ E',
+    'ATRIUM': 'ಮುಖ್ಯ ಪ್ರವೇಶದ್ವಾರ & ಹೃತ್ಕುಕ್ಷಿ',
+    'GAL_A': 'ಗ್ಯಾಲರಿ A - ನವೋದಯ',
+    'GAL_B': 'ಗ್ಯಾಲರಿ B - ಇಂಪ್ರೆಷನಿಸಂ',
+    'GAL_C': 'ಗ್ಯಾಲರಿ C - ಆಧುನಿಕ & ಅತಿವಾಸ್ತವಿಕತೆ',
+    'GAL_D': 'ಗ್ಯಾಲರಿ D - ಶಿಲ್ಪಗಳು',
+    'GAL_E': 'ಗ್ಯಾಲರಿ E - ಏಷ್ಯನ್ ಪರಂಪರೆ'
+  },
+  fr: {
+    'Main Entrance & Atrium': 'Entrée Principale & Atrium',
+    'Gallery A - Renaissance': 'Galerie A - Renaissance',
+    'Gallery B - Impressionism': 'Galerie B - Impressionnisme',
+    'Gallery C - Modern & Surrealism': 'Galerie C - Art Moderne & Surréalisme',
+    'Gallery D - Sculptures': 'Galerie D - Sculptures',
+    'Gallery E - Asian Heritage': 'Galerie E - Patrimoine Asiatique',
+    'Main Entrance': 'Entrée Principale',
+    'Gallery A': 'Galerie A',
+    'Gallery B': 'Galerie B',
+    'Gallery C': 'Galerie C',
+    'Gallery D': 'Galerie D',
+    'Gallery E': 'Galerie E',
+    'ATRIUM': 'Entrée Principale & Atrium',
+    'GAL_A': 'Galerie A - Renaissance',
+    'GAL_B': 'Galerie B - Impressionnisme',
+    'GAL_C': 'Galerie C - Art Moderne & Surréalisme',
+    'GAL_D': 'Galerie D - Sculptures',
+    'GAL_E': 'Galerie E - Patrimoine Asiatique'
+  },
+  de: {
+    'Main Entrance & Atrium': 'Haupteingang & Atrium',
+    'Gallery A - Renaissance': 'Galerie A - Renaissance',
+    'Gallery B - Impressionism': 'Galerie B - Impressionismus',
+    'Gallery C - Modern & Surrealism': 'Galerie C - Moderne & Surrealismus',
+    'Gallery D - Sculptures': 'Galerie D - Skulpturen',
+    'Gallery E - Asian Heritage': 'Galerie E - Asiatisches Kulturerbe',
+    'Main Entrance': 'Haupteingang',
+    'Gallery A': 'Galerie A',
+    'Gallery B': 'Galerie B',
+    'Gallery C': 'Galerie C',
+    'Gallery D': 'Galerie D',
+    'Gallery E': 'Galerie E',
+    'ATRIUM': 'Haupteingang & Atrium',
+    'GAL_A': 'Galerie A - Renaissance',
+    'GAL_B': 'Galerie B - Impressionismus',
+    'GAL_C': 'Galerie C - Moderne & Surrealismus',
+    'GAL_D': 'Galerie D - Skulpturen',
+    'GAL_E': 'Galerie E - Asiatisches Kulturerbe'
+  },
+  es: {
+    'Main Entrance & Atrium': 'Entrada Principal y Atrio',
+    'Gallery A - Renaissance': 'Galería A - Renacimiento',
+    'Gallery B - Impressionism': 'Galería B - Impresionismo',
+    'Gallery C - Modern & Surrealism': 'Galería C - Moderno y Surrealismo',
+    'Gallery D - Sculptures': 'Galería D - Esculturas',
+    'Gallery E - Asian Heritage': 'Galería E - Patrimonio Asiático',
+    'Main Entrance': 'Entrada Principal',
+    'Gallery A': 'Galería A',
+    'Gallery B': 'Galería B',
+    'Gallery C': 'Galería C',
+    'Gallery D': 'Galería D',
+    'Gallery E': 'Galería E',
+    'ATRIUM': 'Entrada Principal y Atrio',
+    'GAL_A': 'Galería A - Renacimiento',
+    'GAL_B': 'Galería B - Impresionismo',
+    'GAL_C': 'Galería C - Moderno y Surrealismo',
+    'GAL_D': 'Galería D - Esculturas',
+    'GAL_E': 'Galería E - Patrimonio Asiático'
+  }
+};
+
 const translations: Record<SupportedLanguage, Record<string, string>> = {
   en: {
     welcomeTitle: 'Welcome to Smart Museum',
@@ -197,7 +380,16 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     exploreSubtitle: 'Browse world-class artworks curated across 5 thematic galleries with instant AI guidance and audio commentary.',
     aiActive: 'Athena Autonomous AI (Active)',
     supportedLanguagesCount: '9 Supported Languages',
-    viewAll: 'view all'
+    viewAll: 'view all',
+    smartMuseum: 'Smart Museum',
+    beacon: 'Beacon',
+    simulateBeacon: 'Simulate Beacon',
+    capacityAlert: 'Capacity Alert',
+    bleBeaconSimulator: 'Bluetooth Low Energy (BLE) Beacon Simulator',
+    bleSimulatorDesc: 'Click a checkpoint to simulate physical visitor movement through museum zones.',
+    close: 'Close',
+    floor: 'Floor',
+    crowded: 'Crowded'
   },
   ta: {
     welcomeTitle: 'ஸ்மார்ட் அருங்காட்சியகத்திற்கு நல்வரவு',
@@ -277,7 +469,16 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     exploreSubtitle: '5 கருப்பொருள் காட்சியகங்களில் திரட்டப்பட்ட உலகத்தரம் வாய்ந்த கலைப்படைப்புகளை ஏஐ வழிகாட்டுதல் மற்றும் ஆடியோ விளக்கங்களுடன் பார்வையிடுங்கள்.',
     aiActive: 'ஏதெனா தன்னாட்சி ஏஐ (செயலில் உள்ளது)',
     supportedLanguagesCount: '9 ஆதரிக்கப்படும் மொழிகள்',
-    viewAll: 'அனைத்தையும் காண்க'
+    viewAll: 'அனைத்தையும் காண்க',
+    smartMuseum: 'ஸ்மார்ட் அருங்காட்சியகம்',
+    beacon: 'பீக்கன்',
+    simulateBeacon: 'பீக்கனை உருவகப்படுத்து',
+    capacityAlert: 'கொள்ளளவு எச்சரிக்கை',
+    bleBeaconSimulator: 'புளூடூத் பீக்கன் சிமுலேட்டர்',
+    bleSimulatorDesc: 'அருங்காட்சியக மண்டலங்களில் பார்வையாளர் நகர்வை உருவகப்படுத்த ஒரு இடத்தை கிளிக் செய்க.',
+    close: 'மூடுக',
+    floor: 'தளம்',
+    crowded: 'அதிக கூட்டம்'
   },
   hi: {
     welcomeTitle: 'स्मार्ट संग्रहालय में आपका स्वागत है',
@@ -357,7 +558,16 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     exploreSubtitle: '5 विषयगत दीर्घाओं में क्यूरेट की गई विश्वस्तरीय कलाकृतियों को तत्काल एआई मार्गदर्शन और ऑडियो कमेंट्री के साथ देखें।',
     aiActive: 'एथेना स्वायत्त एआई (सक्रिय)',
     supportedLanguagesCount: '9 समर्थित भाषाएं',
-    viewAll: 'सभी देखें'
+    viewAll: 'सभी देखें',
+    smartMuseum: 'स्मार्ट संग्रहालय',
+    beacon: 'बीकन',
+    simulateBeacon: 'बीकन सिम्युलेट करें',
+    capacityAlert: 'क्षमता चेतावनी',
+    bleBeaconSimulator: 'ब्लूटूथ बीकन सिम्युलेटर',
+    bleSimulatorDesc: 'संग्रहालय के विभिन्न क्षेत्रों में आगंतुकों की गतिविधि का अनुकरण करने के लिए एक चेकपॉइंट चुनें।',
+    close: 'बंद करें',
+    floor: 'मंजिल',
+    crowded: 'भीड़भाड़'
   },
   ml: {
     welcomeTitle: 'സ്മാർട്ട് മ്യൂസിയത്തിലേക്ക് സ്വാഗതം',
@@ -437,7 +647,16 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     exploreSubtitle: '5 ഗ്യാലറികളിലായി ക്രമീകരിച്ച ലോകോത്തര കലാസൃഷ്ടികൾ എഐ ഗൈഡോടെ കാണുക.',
     aiActive: 'അഥീന സ്വയംഭരണ എഐ (സജീവം)',
     supportedLanguagesCount: '9 പിന്തുണയുള്ള ഭാഷകൾ',
-    viewAll: 'എല്ലാം കാണുക'
+    viewAll: 'എല്ലാം കാണുക',
+    smartMuseum: 'സ്മാർട്ട് മ്യൂസിയം',
+    beacon: 'ബീക്കൺ',
+    simulateBeacon: 'ബീക്കൺ സിമുലേറ്റ് ചെയ്യുക',
+    capacityAlert: 'ശേഷി മുന്നറിയിപ്പ്',
+    bleBeaconSimulator: 'ബ്ലൂടൂത്ത് ബീക്കൺ സിമുലേറ്റർ',
+    bleSimulatorDesc: 'സന്ദർശക നീക്കങ്ങൾ സിമുലേറ്റ് ചെയ്യാൻ ഒരു ചെക്ക്പോയിന്റ് തിരഞ്ഞെടുക്കുക.',
+    close: 'അടയ്ക്കുക',
+    floor: 'നില',
+    crowded: 'കൂടുതൽ തിരക്ക്'
   },
   te: {
     welcomeTitle: 'స్మార్ట్ మ్యూజియంకు స్వాగతం',
@@ -517,7 +736,16 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     exploreSubtitle: '5 గ్యాలరీలలో విస్తరించిన ప్రపంచ స్థాయి కళాఖండాలను ఏఐ గైడెన్స్‌తో వీక్షించండి.',
     aiActive: 'ఎథీనా అటానమస్ AI (యాక్టివ్)',
     supportedLanguagesCount: '9 మద్దతుగల భాషలు',
-    viewAll: 'అన్నీ చూడండి'
+    viewAll: 'అన్నీ చూడండి',
+    smartMuseum: 'స్మార్ట్ మ్యూజియం',
+    beacon: 'బీకాన్',
+    simulateBeacon: 'బీకాన్ సిమ్యులేట్ చేయండి',
+    capacityAlert: 'సామర్థ్య హెచ్చరిక',
+    bleBeaconSimulator: 'బ్లూటూత్ బీకాన్ సిమ్యులేటర్',
+    bleSimulatorDesc: 'సందర్శకుల కదలికలను అనుకరించడానికి చెక్‌పాయింట్‌ను ఎంచుకోండి.',
+    close: 'మూసివేయి',
+    floor: 'అంతస్తు',
+    crowded: 'రద్దీగా ఉంది'
   },
   kn: {
     welcomeTitle: 'ಸ್ಮಾರ್ಟ್ ಮ್ಯೂಸಿಯಂಗೆ ಸುಸ್ವಾಗತ',
@@ -597,7 +825,16 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     exploreSubtitle: '5 ಗ್ಯಾಲರಿಗಳಲ್ಲಿ ಹರಡಿರುವ ವಿಶ್ವದರ್ಜೆಯ ಕಲಾಕೃತಿಗಳನ್ನು AI ಮಾರ್ಗದರ್ಶನದೊಂದಿಗೆ ಅನ್ವೇಷಿಸಿ.',
     aiActive: 'ಅಥೀನಾ ಸ್ವಾಯತ್ತ AI (ಸಕ್ರಿಯ)',
     supportedLanguagesCount: '9 ಬೆಂಬಲಿತ ಭಾಷೆಗಳು',
-    viewAll: 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ'
+    viewAll: 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ',
+    smartMuseum: 'ಸ್ಮಾರ್ಟ್ ಮ್ಯೂಸಿಯಂ',
+    beacon: 'ಬೀಕನ್',
+    simulateBeacon: 'ಬೀಕನ್ ಸಿಮ್ಯುಲೇಟ್ ಮಾಡಿ',
+    capacityAlert: 'ಸಾಮರ್ಥ್ಯ ಎಚ್ಚರಿಕೆ',
+    bleBeaconSimulator: 'ಬ್ಲೂಟೂತ್ ಬೀಕನ್ ಸಿಮ್ಯುಲೇಟರ್',
+    bleSimulatorDesc: 'ಸಂದರ್ಶಕರ ಚಲನೆಯನ್ನು ಅನುಕರಿಸಲು ಒಂದು ಚೆಕ್‌ಪಾಯಿಂಟ್ ಆಯ್ಕೆಮಾಡಿ.',
+    close: 'ಮುಚ್ಚಿ',
+    floor: 'ಮಹಡಿ',
+    crowded: 'ಜನದಟ್ಟಣೆ'
   },
   fr: {
     welcomeTitle: 'Bienvenue au Musée Intelligent',
@@ -677,7 +914,16 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     exploreSubtitle: 'Parcourez des œuvres de renommée mondiale réparties dans 5 galeries avec audioguide et assistance IA instantanée.',
     aiActive: 'Athena IA Autonome (Active)',
     supportedLanguagesCount: '9 Langues Disponibles',
-    viewAll: 'tout afficher'
+    viewAll: 'tout afficher',
+    smartMuseum: 'Musée Intelligent',
+    beacon: 'Balise',
+    simulateBeacon: 'Simuler la balise',
+    capacityAlert: 'Alerte Affluence',
+    bleBeaconSimulator: 'Simulateur de balises Bluetooth BLE',
+    bleSimulatorDesc: 'Cliquez sur un point de passage pour simuler le déplacement du visiteur dans les galeries.',
+    close: 'Fermer',
+    floor: 'Étage',
+    crowded: 'Surchargé'
   },
   de: {
     welcomeTitle: 'Willkommen im Smart Museum',
@@ -757,7 +1003,16 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     exploreSubtitle: 'Entdecken Sie Meisterwerke in 5 thematischen Galerien mit KI-Kunstführer und Audioguide.',
     aiActive: 'Athena Autonome KI (Aktiv)',
     supportedLanguagesCount: '9 Unterstützte Sprachen',
-    viewAll: 'alle anzeigen'
+    viewAll: 'alle anzeigen',
+    smartMuseum: 'Smart Museum',
+    beacon: 'Beacon',
+    simulateBeacon: 'Beacon simulieren',
+    capacityAlert: 'Auslastungswarnung',
+    bleBeaconSimulator: 'Bluetooth BLE-Beacon-Simulator',
+    bleSimulatorDesc: 'Klicken Sie auf einen Wegpunkt, um den Besucherrundgang durch die Galerien zu simulieren.',
+    close: 'Schließen',
+    floor: 'Etage',
+    crowded: 'Überfüllt'
   },
   es: {
     welcomeTitle: 'Bienvenido a Smart Museum',
@@ -837,7 +1092,16 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     exploreSubtitle: 'Explore obras maestras mundiales en 5 galerías con guía de audio y asistencia de IA al instante.',
     aiActive: 'Athena IA Autónoma (Activa)',
     supportedLanguagesCount: '9 Idiomas Disponibles',
-    viewAll: 'ver todos'
+    viewAll: 'ver todos',
+    smartMuseum: 'Museo Inteligente',
+    beacon: 'Baliza',
+    simulateBeacon: 'Simular baliza',
+    capacityAlert: 'Alerta de Aforo',
+    bleBeaconSimulator: 'Simulador de balizas Bluetooth BLE',
+    bleSimulatorDesc: 'Haga clic en un punto de control para simular el desplazamiento del visitante por las galerías.',
+    close: 'Cerrar',
+    floor: 'Planta',
+    crowded: 'Concurrido'
   }
 };
 
@@ -883,7 +1147,28 @@ export class TranslationService {
   }
 
   public t(key: string): string {
-    return landingTranslations[this.currentLang]?.[key] || translations[this.currentLang]?.[key] || landingTranslations['en']?.[key] || translations['en']?.[key] || key;
+    return (
+      landingTranslations[this.currentLang]?.[key] ||
+      translations[this.currentLang]?.[key] ||
+      LOCATION_NAMES[this.currentLang]?.[key] ||
+      landingTranslations['en']?.[key] ||
+      translations['en']?.[key] ||
+      LOCATION_NAMES['en']?.[key] ||
+      key
+    );
+  }
+
+  public getLocationName(location: string, lang?: SupportedLanguage): string {
+    const target = lang || this.currentLang;
+    if (!location) return '';
+    const map = LOCATION_NAMES[target] || LOCATION_NAMES.en;
+    if (map[location]) return map[location];
+    for (const [key, val] of Object.entries(map)) {
+      if (location.startsWith(key) || key.startsWith(location)) {
+        return val;
+      }
+    }
+    return location;
   }
 
   public getExhibitTranslation(exhibit: any, lang?: SupportedLanguage): LocalizedExhibit {

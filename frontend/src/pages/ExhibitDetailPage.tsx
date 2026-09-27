@@ -144,7 +144,7 @@ export const ExhibitDetailPage: React.FC = () => {
           className="flex items-center gap-1.5 text-xs text-museum-muted hover:text-white px-3 py-1.5 rounded-lg bg-museum-elevated border border-museum-border transition-colors"
         >
           <ChevronLeft size={16} />
-          <span>Back to Collection</span>
+          <span>{t('backToCollection')}</span>
         </button>
 
         <div className="flex items-center gap-2">
@@ -155,19 +155,19 @@ export const ExhibitDetailPage: React.FC = () => {
                 ? 'bg-red-500/20 text-red-300 border-red-500/40'
                 : 'bg-museum-elevated text-museum-muted hover:text-white border-museum-border'
             }`}
-            title="Favorite"
+            title={t('favorite')}
           >
             <Heart size={16} fill={isFav ? 'currentColor' : 'none'} />
-            <span className="hidden sm:inline">{isFav ? 'Favorited' : 'Favorite'}</span>
+            <span className="hidden sm:inline">{isFav ? t('favorited') : t('favorite')}</span>
           </button>
 
           <button
             onClick={handleShare}
             className="p-2 rounded-xl bg-museum-elevated text-museum-muted hover:text-white border border-museum-border transition-colors flex items-center gap-1.5 text-xs"
-            title="Share Artwork"
+            title={t('share')}
           >
             {copied ? <Check size={16} className="text-emerald-400" /> : <Share2 size={16} />}
-            <span className="hidden sm:inline">{copied ? 'Link Copied!' : 'Share'}</span>
+            <span className="hidden sm:inline">{copied ? t('linkCopied') : t('share')}</span>
           </button>
         </div>
       </div>
@@ -208,7 +208,7 @@ export const ExhibitDetailPage: React.FC = () => {
             <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
               <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs text-white/90 flex items-center gap-1.5 shadow-lg">
                 <Maximize2 size={13} />
-                <span>Full View</span>
+                <span>{t('fullView')}</span>
               </span>
             </div>
 
@@ -240,15 +240,15 @@ export const ExhibitDetailPage: React.FC = () => {
           {/* Quick Technical Specs Box */}
           <div className="p-4 rounded-2xl bg-[#15181D] border border-museum-border text-xs space-y-2">
             <div className="flex justify-between border-b border-museum-border/40 pb-1.5">
-              <span className="text-museum-muted">Medium</span>
-              <span className="text-white font-medium">{exhibit.medium || 'Oil on canvas'}</span>
+              <span className="text-museum-muted">{t('medium')}</span>
+              <span className="text-white font-medium">{localized.medium || exhibit.medium || 'Oil on canvas'}</span>
             </div>
             <div className="flex justify-between border-b border-museum-border/40 pb-1.5">
-              <span className="text-museum-muted">Dimensions</span>
+              <span className="text-museum-muted">{t('dimensions')}</span>
               <span className="text-white font-mono">{exhibit.dimensions || 'Standard display'}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-museum-muted">Accession ID</span>
+              <span className="text-museum-muted">{t('accessionId')}</span>
               <span className="text-museum-gold font-mono">{exhibit.exhibitId}</span>
             </div>
           </div>
@@ -259,7 +259,7 @@ export const ExhibitDetailPage: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 text-museum-gold text-xs font-mono mb-2">
               <Calendar size={13} />
-              <span>Created {exhibit.year}</span>
+              <span>{t('created')} {exhibit.year}</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-2 leading-tight">
@@ -267,7 +267,7 @@ export const ExhibitDetailPage: React.FC = () => {
             </h1>
 
             <h2 className="text-lg text-museum-muted font-sans font-medium mb-6">
-              by <strong className="text-white">{exhibit.artist}</strong>
+              {t('by')} <strong className="text-white">{exhibit.artist}</strong>
             </h2>
           </div>
 
@@ -314,19 +314,19 @@ export const ExhibitDetailPage: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <span className="flex items-center gap-1 text-[11px] font-bold text-museum-gold uppercase tracking-wider bg-museum-gold/20 px-2.5 py-0.5 rounded-full border border-museum-gold/40">
                     <Headphones size={12} className={activeAudio?.exhibit?.exhibitId === exhibit.exhibitId && activeAudio.isPlaying ? 'animate-bounce' : ''} />
-                    <span>Curated Audio Docent</span>
+                    <span>{t('curatedAudioDocent')}</span>
                   </span>
                   <span className="text-[11px] text-museum-cyan font-mono bg-museum-cyan/10 px-2 py-0.5 rounded border border-museum-cyan/30">
-                    {exhibit.audioDuration || 140}s In-Depth Tour
+                    {exhibit.audioDuration || 140}{t('inDepthTour')}
                   </span>
                 </div>
                 <h3 className="text-sm font-semibold text-white">
                   {activeAudio?.exhibit?.exhibitId === exhibit.exhibitId && activeAudio.isPlaying
-                    ? 'Now Explaining Painting In Detail...'
-                    : 'Listen to Full Painting Analysis'}
+                    ? t('nowExplaining')
+                    : t('listenFullAnalysis')}
                 </h3>
                 <p className="text-xs text-museum-muted leading-relaxed">
-                  Explains brushwork, medium ({exhibit.medium || 'Oil on canvas'}), dimensions, historical significance, and hidden curatorial insights in {language.toUpperCase()}.
+                  {t('audioDocentDesc')}
                 </p>
               </div>
 
@@ -337,12 +337,12 @@ export const ExhibitDetailPage: React.FC = () => {
                 {activeAudio?.exhibit?.exhibitId === exhibit.exhibitId && activeAudio.isPlaying ? (
                   <>
                     <Pause size={15} fill="black" />
-                    <span>Pause Audio</span>
+                    <span>{t('pauseAudio')}</span>
                   </>
                 ) : (
                   <>
                     <Play size={15} fill="black" />
-                    <span>Play Audio Guide</span>
+                    <span>{t('playAudioGuide')}</span>
                   </>
                 )}
               </button>
@@ -354,10 +354,10 @@ export const ExhibitDetailPage: React.FC = () => {
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-semibold text-museum-gold flex items-center gap-1.5 uppercase tracking-wider">
                 <Globe size={13} />
-                <span>Audio & Description Language (9 Live)</span>
+                <span>{t('audioDescriptionLanguage')}</span>
               </span>
               <span className="text-[10px] text-museum-cyan font-mono bg-museum-cyan/10 px-2 py-0.5 rounded border border-museum-cyan/30">
-                {language.toUpperCase()} Active
+                {SUPPORTED_LANGUAGES.find(l => l.code === language)?.nativeName || language.toUpperCase()} {t('active')}
               </span>
             </div>
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
@@ -384,22 +384,26 @@ export const ExhibitDetailPage: React.FC = () => {
           {/* Curatorial Overview Essay */}
           <div className="space-y-4 text-sm leading-relaxed text-museum-text/90">
             <h3 className="text-xs font-semibold text-museum-gold uppercase tracking-wider">
-              Curatorial Overview
+              {t('curatorialOverview')}
             </h3>
             <p className="text-base text-white/95 font-serif leading-relaxed">
               {localized.description}
             </p>
 
-            {exhibit.longDescription && (
+            {localized.longDescription ? (
+              <p className="text-xs text-museum-muted leading-relaxed pt-2">
+                {localized.longDescription}
+              </p>
+            ) : language === 'en' && exhibit.longDescription ? (
               <p className="text-xs text-museum-muted leading-relaxed pt-2">
                 {exhibit.longDescription}
               </p>
-            )}
+            ) : null}
 
-            {exhibit.curatorNotes && (
+            {(localized.curatorNotes || (language === 'en' && exhibit.curatorNotes)) && (
               <div className="p-3.5 rounded-xl bg-museum-elevated/80 border-l-2 border-museum-gold text-xs text-museum-muted">
-                <span className="font-semibold text-white block mb-1">Chief Curator's Note</span>
-                {exhibit.curatorNotes}
+                <span className="font-semibold text-white block mb-1">{t('chiefCuratorNote')}</span>
+                {localized.curatorNotes || exhibit.curatorNotes}
               </div>
             )}
           </div>
@@ -413,14 +417,14 @@ export const ExhibitDetailPage: React.FC = () => {
             <div>
               <span className="text-museum-gold text-xs font-mono uppercase tracking-widest">{t('relatedWorks')}</span>
               <h3 className="text-2xl font-serif font-bold text-white mt-1">
-                Also in {exhibit.location.split(' - ')[0]}
+                {t('alsoIn')} {exhibit.location.split(' - ')[0]}
               </h3>
             </div>
             <Link
               to={`/map?target=${exhibit.exhibitId}`}
               className="text-xs text-museum-cyan hover:underline flex items-center gap-1"
             >
-              <span>View Gallery on Floorplan</span>
+              <span>{t('viewGalleryOnMap')}</span>
               <ExternalLink size={12} />
             </Link>
           </div>

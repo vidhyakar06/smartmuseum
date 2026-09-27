@@ -8,6 +8,16 @@ export interface LanguageOption {
   flag: string;
 }
 
+export interface LocalizedExhibit {
+  title: string;
+  description: string;
+  category?: string;
+  longDescription?: string;
+  medium?: string;
+  artistBio?: string;
+  curatorNotes?: string;
+}
+
 export const SUPPORTED_LANGUAGES: LanguageOption[] = [
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧' },
   { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்', flag: '🇮🇳' },
@@ -19,6 +29,94 @@ export const SUPPORTED_LANGUAGES: LanguageOption[] = [
   { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
   { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
 ];
+
+const MEDIUM_MAP: Record<SupportedLanguage, Record<string, string>> = {
+  en: {
+    poplar: 'Oil on poplar panel',
+    canvas: 'Oil on canvas',
+    bronze: 'Bronze sculpture',
+    marble: 'Carved Carrara marble',
+    fresco: 'Buon fresco on plaster'
+  },
+  ta: {
+    poplar: 'பாப்லர் மரப்பலகையில் எண்ணெய் ஓவியம்',
+    canvas: 'கேன்வாஸில் எண்ணெய் ஓவியம்',
+    bronze: 'வெண்கலச் சிற்பம்',
+    marble: 'செதுக்கப்பட்ட பளிங்குக்கல்',
+    fresco: 'சுவரோவியம் (Fresco)'
+  },
+  hi: {
+    poplar: 'पोपलर की लकड़ी पर तैल चित्र',
+    canvas: 'कैनवास पर तैल चित्र',
+    bronze: 'कांस्य मूर्तिकला',
+    marble: 'नक्काशीदार संगमरमर',
+    fresco: 'भित्तिचित्र (Fresco)'
+  },
+  ml: {
+    poplar: 'പോപ്ലാർ പലകയിലെ എണ്ണച്ചായം',
+    canvas: 'കാൻവാസിൽ എണ്ണച്ചായം',
+    bronze: 'വെങ്കല ശിൽപം',
+    marble: 'മാർബിൾ ശിൽപം',
+    fresco: 'ചുവർചിത്രം'
+  },
+  te: {
+    poplar: 'పాప్లర్ చెక్కపై తైలవర్ణం',
+    canvas: 'కాన్వాస్‌పై తైలవర్ణం',
+    bronze: 'కాంస్య శిల్పం',
+    marble: 'పాలరాతి శిల్పం',
+    fresco: 'కుడ్యచిత్రం'
+  },
+  kn: {
+    poplar: 'ಪೋಪ್ಲರ್ ಹಲಗೆಯ ಮೇಲೆ ತೈಲವರ್ಣ',
+    canvas: 'ಕ್ಯಾನ್ವಾಸ್ ಮೇಲೆ ತೈಲವರ್ಣ',
+    bronze: 'ಕಂಚಿನ ಶಿಲ್ಪ',
+    marble: 'ಅಮೃತಶಿಲೆಯ ಶಿಲ್ಪ',
+    fresco: 'ಗೋಡೆಚಿತ್ರ'
+  },
+  fr: {
+    poplar: 'Huile sur panneau de peuplier',
+    canvas: 'Huile sur toile',
+    bronze: 'Sculpture en bronze',
+    marble: 'Marbre de Carrare sculpté',
+    fresco: 'Fresque sur plâtre'
+  },
+  de: {
+    poplar: 'Öl auf Pappelholz',
+    canvas: 'Öl auf Leinwand',
+    bronze: 'Bronzeskulptur',
+    marble: 'Carrara-Marmor',
+    fresco: 'Fresko auf Putz'
+  },
+  es: {
+    poplar: 'Óleo sobre tabla de álamo',
+    canvas: 'Óleo sobre lienzo',
+    bronze: 'Escultura de bronce',
+    marble: 'Mármol esculpido',
+    fresco: 'Fresco sobre yeso'
+  }
+};
+
+const EXHIBIT_LONG_DESCRIPTIONS: Record<string, Partial<Record<SupportedLanguage, string>>> = {
+  EX001: {
+    en: 'Painted by Florentine polymath Leonardo da Vinci, the portrait depicts Lisa Gherardini, wife of Francesco del Giocondo. Leonardo pioneered the sfumato technique here—softly blurring transitions between tones and colors to evoke an atmospheric realism and a gaze that seems to follow the observer.',
+    ta: 'இத்தாலிய மறுமலர்ச்சியின் தலைசிறந்த மேதையான லியனார்டோ டா வின்சியால் வரையப்பட்ட இந்த உலகப் பிரசித்தி பெற்ற உருவப்படம், லிசா கெரார்டினியை சித்தரிக்கிறது. இதில் பயன்படுத்தப்பட்ட புகழ்பெற்ற "ஸ்ஃபுமாட்டோ" (sfumato) நுட்பம், வண்ணங்களின் மென்மையான மாற்றங்கள் மற்றும் பார்வையாளரைக் கவரும் புதிரான புன்னகை ஆகியவை இக்கலைப்படைப்பை அழியாப் புகழ்பெற்றதாக மாற்றியுள்ளது.',
+    hi: 'फ्लोरेंटाइन बहुज्ञ लियोनार्डो दा विंची द्वारा चित्रित यह चित्र लिसा घेरार्डिनी को दर्शाता है। लियोनार्डो ने इसमें स्फुमाटो तकनीक का उपयोग किया था, जो रंगों के सूक्ष्म मिश्रण और उस रहस्यमयी दृष्टि के लिए प्रसिद्ध है जो हर कोण से दर्शक को देखती प्रतीत होती है।',
+    ml: 'ലിയനാർഡോ ഡാവിഞ്ചി വരച്ച വിഖ്യാത ചിത്രം ലിസ ഗെരാർഡിനിയെ പ്രതിനിധീകരിക്കുന്നു. സൂക്ഷ്മമായ വർണ്ണമിശ്രണവും നിഗൂഢമായ പുഞ്ചിരിയും ഇതിന്റെ പ്രത്യേകതയാണ്.',
+    te: 'లియోనార్డో డా విన్సీ చిత్రించిన ఈ అద్భుత చిత్రం లిసా ఘెరార్దినిని వర్ణిస్తుంది. మృదువైన రంగుల కలయిక మరియు ప్రసిద్ధ చిరునవ్వు ప్రపంచవ్యాప్తంగా ప్రసిద్ధి చెందాయి.',
+    kn: 'ಲಿಯೊನಾರ್ಡೊ ಡಾ ವಿಂಚಿ ರಚಿಸಿದ ವಿಶ್ವವಿಖ್ಯಾತ ಕಲಾಕೃತಿ ಇದು. ಬಣ್ಣಗಳ ಮೃದುವಾದ ಸಮ್ಮಿಶ್ರಣ ಮತ್ತು ನಿಗೂಢ ನಗೆ ಈ ಚಿತ್ರದ ಅತಿ ದೊಡ್ಡ ಆಕರ್ಷಣೆಯಾಗಿದೆ.',
+    fr: 'Peint par le génie florentin Léonard de Vinci, ce portrait illustre Lisa Gherardini. Léonard y a perfectionné la technique du sfumato, fondant les transitions entre tons et couleurs pour évoquer une présence vivante et ce regard énigmatique qui semble suivre le spectateur.',
+    de: 'Gemalt vom Universalgenie Leonardo da Vinci, stellt das Gemälde Lisa Gherardini dar. Leonardo perfektionierte hier die Sfumato-Technik mit feinen Farbübergängen und einem faszinierenden Blick, der den Besucher im Raum begleitet.',
+    es: 'Pintado por el genio florentino Leonardo da Vinci, este retrato representa a Lisa Gherardini. Leonardo perfeccionó aquí la técnica del sfumato, difuminando suavemente tonos y colores para evocar un realismo atmosférico único y una mirada cautivadora.'
+  },
+  EX002: {
+    en: 'Painted from the window of his asylum room in Saint-Rémy-de-Provence just after sunrise, Van Gogh channeled intense emotional resonance using rhythmic, impasto brush strokes and vivid cobalt blues contrasted against glowing golden stars.',
+    ta: 'வின்சென்ட் வான் கோவின் மிகச்சிறந்த படைப்பான இது, சுழலும் இரவு வானம், பிரகாசமான நட்சத்திரங்கள் மற்றும் பிறை நிலவை விவரிக்கிறது. அடர்ந்த நீல மற்றும் தங்க நிறங்களின் முரண்பாடும், தடிமனான தூரிகை வரிகளும் பார்வையாளர்களை மெய்சிலிர்க்க வைக்கிறது.',
+    hi: 'विन्सेंट वैन गॉग की यह सर्वोत्कृष्ट कृति रात के घूमते हुए आकाश, चमकदार तारों और अर्धचंद्र को दर्शाती है। गहरे नीले और सुनहरे रंगों का जीवंत सम्मिश्रण मन को मोह लेता है।',
+    fr: 'Peinte depuis sa chambre d\'asile à Saint-Rémy-de-Provence, cette œuvre maîtresse de Van Gogh sublime le ciel nocturne tourbillonnant par un jeu vibrant de bleus cobalt et d\'étoiles incandescentes.',
+    es: 'Pintada por Van Gogh desde su habitación en Saint-Rémy, plasma el cielo nocturno arremolinado con una intensidad emocional inigualable y astros dorados sobre el azul cobalto.',
+    de: 'Von Vincent van Gogh in Saint-Rémy gemalt, zeigt dieses Meisterwerk einen wirbelnden Nachthimmel voller emotionaler Wucht in Kobaltblau und leuchtendem Gold.'
+  }
+};
 
 const translations: Record<SupportedLanguage, Record<string, string>> = {
   en: {
@@ -69,7 +167,37 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     navLanguages: 'Language',
     adminLogin: 'Admin Portal',
     dashboard: 'Operations Dashboard',
-    bottleneckAlert: 'Crowd Bottleneck'
+    bottleneckAlert: 'Crowd Bottleneck',
+    interactiveArtGuide: 'Interactive Art Guide',
+    admin: 'Admin',
+    curatedAudioDocent: 'Curated Audio Docent',
+    inDepthTour: 's In-Depth Tour',
+    listenFullAnalysis: 'Listen to Full Painting Analysis',
+    nowExplaining: 'Now Explaining Painting In Detail...',
+    audioDocentDesc: 'Explains brushwork, medium, dimensions, historical significance, and hidden curatorial insights.',
+    playAudioGuide: 'Play Audio Guide',
+    pauseAudio: 'Pause Audio',
+    audioDescriptionLanguage: 'Audio & Description Language (9 Live)',
+    curatorialOverview: 'Curatorial Overview',
+    chiefCuratorNote: "Chief Curator's Note",
+    medium: 'Medium',
+    dimensions: 'Dimensions',
+    accessionId: 'Accession ID',
+    by: 'by',
+    created: 'Created',
+    active: 'Active',
+    backToCollection: 'Back to Collection',
+    alsoIn: 'Also in',
+    viewGalleryOnMap: 'View Gallery on Floorplan',
+    fullView: 'Full View',
+    linkCopied: 'Link Copied!',
+    favorite: 'Favorite',
+    favorited: 'Favorited',
+    exploreMasterpieces: 'Explore Masterpieces',
+    exploreSubtitle: 'Browse world-class artworks curated across 5 thematic galleries with instant AI guidance and audio commentary.',
+    aiActive: 'Athena Autonomous AI (Active)',
+    supportedLanguagesCount: '9 Supported Languages',
+    viewAll: 'view all'
   },
   ta: {
     welcomeTitle: 'ஸ்மார்ட் அருங்காட்சியகத்திற்கு நல்வரவு',
@@ -119,7 +247,37 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     navLanguages: 'மொழி',
     adminLogin: 'நிர்வாக தளம்',
     dashboard: 'செயல்பாட்டு டாஷ்போர்டு',
-    bottleneckAlert: 'கூட்ட நெரிசல் எச்சரிக்கை'
+    bottleneckAlert: 'கூட்ட நெரிசல் எச்சரிக்கை',
+    interactiveArtGuide: 'ஊடாடும் கலை வழிகாட்டி',
+    admin: 'நிர்வாகம்',
+    curatedAudioDocent: 'சிறப்பு ஆடியோ வழிகாட்டி',
+    inDepthTour: 'வி விரிவான விளக்கம்',
+    listenFullAnalysis: 'முழு ஓவிய பகுப்பாய்வைக் கேளுங்கள்',
+    nowExplaining: 'ஓவியத்தின் நுணுக்கங்கள் விவரிக்கப்படுகின்றன...',
+    audioDocentDesc: 'தூரிகை நயம், ஊடகம், பரிமாணங்கள், வரலாற்று முக்கியத்துவம் மற்றும் அரிய கலை நுணுக்கங்களை விளக்குகிறது.',
+    playAudioGuide: 'ஆடியோ வழிகாட்டியை இயக்கு',
+    pauseAudio: 'ஆடியோவை நிறுத்து',
+    audioDescriptionLanguage: 'ஆடியோ மற்றும் விளக்க மொழி (9 மொழிகள்)',
+    curatorialOverview: 'கலைக்களஞ்சிய விளக்கம்',
+    chiefCuratorNote: 'தலைமை அருங்காட்சியகக் குறிப்பு',
+    medium: 'ஊடகம்',
+    dimensions: 'பரிமாணங்கள்',
+    accessionId: 'சேகரிப்பு எண்',
+    by: 'படைப்பாளர்:',
+    created: 'உருவாக்கப்பட்ட ஆண்டு:',
+    active: 'செயலில் உள்ளது',
+    backToCollection: 'தொகுப்பிற்குத் திரும்பு',
+    alsoIn: 'அருகிலுள்ள படைப்புகள்:',
+    viewGalleryOnMap: 'வரைபடத்தில் காட்சியகத்தைக் காண்க',
+    fullView: 'முழு காட்சி',
+    linkCopied: 'இணைப்பு நகலெடுக்கப்பட்டது!',
+    favorite: 'விருப்பம்',
+    favorited: 'விருப்பத்தில் உள்ளது',
+    exploreMasterpieces: 'தலைசிறந்த கலைப்படைப்புகளை ஆராய்க',
+    exploreSubtitle: '5 கருப்பொருள் காட்சியகங்களில் திரட்டப்பட்ட உலகத்தரம் வாய்ந்த கலைப்படைப்புகளை ஏஐ வழிகாட்டுதல் மற்றும் ஆடியோ விளக்கங்களுடன் பார்வையிடுங்கள்.',
+    aiActive: 'ஏதெனா தன்னாட்சி ஏஐ (செயலில் உள்ளது)',
+    supportedLanguagesCount: '9 ஆதரிக்கப்படும் மொழிகள்',
+    viewAll: 'அனைத்தையும் காண்க'
   },
   hi: {
     welcomeTitle: 'स्मार्ट संग्रहालय में आपका स्वागत है',
@@ -169,7 +327,37 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     navLanguages: 'भाषा',
     adminLogin: 'प्रशासक लॉगिन',
     dashboard: 'ऑपरेशन्स डैशबोर्ड',
-    bottleneckAlert: 'भीड़भाड़ चेतावनी'
+    bottleneckAlert: 'भीड़भाड़ चेतावनी',
+    interactiveArtGuide: 'इंटरैक्टिव आर्ट गाइड',
+    admin: 'प्रशासन',
+    curatedAudioDocent: 'विशेष ऑडियो गाइड',
+    inDepthTour: 'सेकंड विस्तृत टूर',
+    listenFullAnalysis: 'पेंटिंग का पूरा विश्लेषण सुनें',
+    nowExplaining: 'पेंटिंग का विवरण प्रस्तुत किया जा रहा है...',
+    audioDocentDesc: 'तूलिका तकनीक, माध्यम, आयाम, ऐतिहासिक महत्व और कलात्मक बारीकियों की विस्तृत व्याख्या।',
+    playAudioGuide: 'ऑडियो गाइड चलाएं',
+    pauseAudio: 'ऑडियो रोकें',
+    audioDescriptionLanguage: 'ऑडियो और विवरण की भाषा (9 भाषाएं)',
+    curatorialOverview: 'क्यूरेटर का अवलोकन',
+    chiefCuratorNote: 'मुख्य क्यूरेटर की टिप्पणी',
+    medium: 'माध्यम',
+    dimensions: 'आयाम',
+    accessionId: 'पंजीकरण संख्या',
+    by: 'रचयिता:',
+    created: 'रचना काल:',
+    active: 'सक्रिय',
+    backToCollection: 'संग्रह पर वापस जाएं',
+    alsoIn: 'इस दीर्घा में अन्य कलाकृतियां:',
+    viewGalleryOnMap: 'फ्लोरप्लान पर दीर्घा देखें',
+    fullView: 'पूर्ण दृश्य',
+    linkCopied: 'लिंक कॉपी हो गया!',
+    favorite: 'पसंदीदा',
+    favorited: 'पसंदीदा में जोड़ा गया',
+    exploreMasterpieces: 'उत्कृष्ट कलाकृतियों का अन्वेषण करें',
+    exploreSubtitle: '5 विषयगत दीर्घाओं में क्यूरेट की गई विश्वस्तरीय कलाकृतियों को तत्काल एआई मार्गदर्शन और ऑडियो कमेंट्री के साथ देखें।',
+    aiActive: 'एथेना स्वायत्त एआई (सक्रिय)',
+    supportedLanguagesCount: '9 समर्थित भाषाएं',
+    viewAll: 'सभी देखें'
   },
   ml: {
     welcomeTitle: 'സ്മാർട്ട് മ്യൂസിയത്തിലേക്ക് സ്വാഗതം',
@@ -219,7 +407,37 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     navLanguages: 'ഭാഷ',
     adminLogin: 'അഡ്മിൻ പോർട്ടൽ',
     dashboard: 'ഡാഷ്‌ബോർഡ്',
-    bottleneckAlert: 'തിരക്ക് മുന്നറിയിപ്പ്'
+    bottleneckAlert: 'തിരക്ക് മുന്നറിയിപ്പ്',
+    interactiveArtGuide: 'സംവേദനാത്മക ആർട്ട് ഗൈഡ്',
+    admin: 'അഡ്മിൻ',
+    curatedAudioDocent: 'പ്രത്യേക ഓഡിയോ ഗൈഡ്',
+    inDepthTour: 'സെക്കൻഡ് സമഗ്ര വിവരണം',
+    listenFullAnalysis: 'ചിത്രത്തിന്റെ സമഗ്ര വിവരണം കേൾക്കുക',
+    nowExplaining: 'ചിത്രത്തിന്റെ വിവരങ്ങൾ വിശദീകരിക്കുന്നു...',
+    audioDocentDesc: 'വരയുടെ ശൈലി, മാധ്യമം, അളവുകൾ, ചരിത്രപ്രാധാന്യം എന്നിവ വിശദീകരിക്കുന്നു.',
+    playAudioGuide: 'ഓഡിയോ ഗൈഡ് കേൾക്കുക',
+    pauseAudio: 'ഓഡിയോ നിർത്തുക',
+    audioDescriptionLanguage: 'ഓഡിയോ & വിവരണ ഭാഷ (9 ഭാഷകൾ)',
+    curatorialOverview: 'ക്യൂറേറ്റർ വിവരണം',
+    chiefCuratorNote: 'ചീഫ് ക്യൂറേറ്ററുടെ കുറിപ്പ്',
+    medium: 'മാധ്യമം',
+    dimensions: 'അളവുകൾ',
+    accessionId: 'ശേഖരണ ഐഡി',
+    by: 'രചന:',
+    created: 'നിർമ്മിച്ച വർഷം:',
+    active: 'സജീവം',
+    backToCollection: 'ശേഖരത്തിലേക്ക് മടങ്ങുക',
+    alsoIn: 'ഈ ഗ്യാലറിയിലെ മറ്റ് സൃഷ്ടികൾ:',
+    viewGalleryOnMap: 'മാപ്പിൽ ഗ്യാലറി കാണുക',
+    fullView: 'മുഴുവൻ കാഴ്ച',
+    linkCopied: 'ലിങ്ക് കോപ്പി ചെയ്തു!',
+    favorite: 'പ്രിയപ്പെട്ടത്',
+    favorited: 'പ്രിയപ്പെട്ടവയിൽ ചേർത്തു',
+    exploreMasterpieces: 'പ്രധാന കലാസൃഷ്ടികൾ കണ്ടെത്തുക',
+    exploreSubtitle: '5 ഗ്യാലറികളിലായി ക്രമീകരിച്ച ലോകോത്തര കലാസൃഷ്ടികൾ എഐ ഗൈഡോടെ കാണുക.',
+    aiActive: 'അഥീന സ്വയംഭരണ എഐ (സജീവം)',
+    supportedLanguagesCount: '9 പിന്തുണയുള്ള ഭാഷകൾ',
+    viewAll: 'എല്ലാം കാണുക'
   },
   te: {
     welcomeTitle: 'స్మార్ట్ మ్యూజియంకు స్వాగతం',
@@ -269,7 +487,37 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     navLanguages: 'భాష',
     adminLogin: 'అడ్మిన్ లాగిన్',
     dashboard: 'డాష్‌బోర్డ్',
-    bottleneckAlert: 'రద్దీ హెచ్చరిక'
+    bottleneckAlert: 'రద్దీ హెచ్చరిక',
+    interactiveArtGuide: 'ఇంటరాక్టివ్ ఆర్ట్ గైడ్',
+    admin: 'అడ్మిన్',
+    curatedAudioDocent: 'ప్రత్యేక ఆడియో గైడ్',
+    inDepthTour: 'సె విస్తృత పర్యటన',
+    listenFullAnalysis: 'చిత్రం యొక్క పూర్తి విశ్లేషణను వినండి',
+    nowExplaining: 'చిత్ర వివరాలను వివరిస్తోంది...',
+    audioDocentDesc: 'చిత్రకళా నైపుణ్యం, మాధ్యమం, కొలతలు, చారిత్రక ప్రాముఖ్యతను వివరిస్తుంది.',
+    playAudioGuide: 'ఆడియో గైడ్ ప్లే చేయండి',
+    pauseAudio: 'ఆడియో పాజ్ చేయండి',
+    audioDescriptionLanguage: 'ఆడియో & వివరణ భాష (9 భాషలు)',
+    curatorialOverview: 'క్యూరేటర్ విశ్లేషణ',
+    chiefCuratorNote: 'ప్రధాన క్యూరేటర్ గమనిక',
+    medium: 'మాధ్యమం',
+    dimensions: 'కొలతలు',
+    accessionId: 'సేకరణ ఐడి',
+    by: 'సృష్టికర్త:',
+    created: 'రూపొందించిన సంవత్సరం:',
+    active: 'యాక్టివ్',
+    backToCollection: 'సేకరణకు తిరిగి వెళ్ళండి',
+    alsoIn: 'ఈ గ్యాలరీలోని ఇతర కళలు:',
+    viewGalleryOnMap: 'మ్యాప్‌లో గ్యాలరీని చూడండి',
+    fullView: 'పూర్తి వీక్షణ',
+    linkCopied: 'లింక్ కాపీ చేయబడింది!',
+    favorite: 'ఇష్టమైనది',
+    favorited: 'ఇష్టమైనదిగా చేర్చబడింది',
+    exploreMasterpieces: 'అద్భుత కళాఖండాలను అన్వేషించండి',
+    exploreSubtitle: '5 గ్యాలరీలలో విస్తరించిన ప్రపంచ స్థాయి కళాఖండాలను ఏఐ గైడెన్స్‌తో వీక్షించండి.',
+    aiActive: 'ఎథీనా అటానమస్ AI (యాక్టివ్)',
+    supportedLanguagesCount: '9 మద్దతుగల భాషలు',
+    viewAll: 'అన్నీ చూడండి'
   },
   kn: {
     welcomeTitle: 'ಸ್ಮಾರ್ಟ್ ಮ್ಯೂಸಿಯಂಗೆ ಸುಸ್ವಾಗತ',
@@ -319,7 +567,37 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     navLanguages: 'ಭಾಷೆ',
     adminLogin: 'ಅಡ್ಮಿನ್ ಲಾಗಿನ್',
     dashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
-    bottleneckAlert: 'ಜನದಟ್ಟಣೆ ಎಚ್ಚರಿಕೆ'
+    bottleneckAlert: 'ಜನದಟ್ಟಣೆ ಎಚ್ಚರಿಕೆ',
+    interactiveArtGuide: 'ಸಂವಾದಾತ್ಮಕ ಕಲಾ ಮಾರ್ಗದರ್ಶಿ',
+    admin: 'ಅಡ್ಮಿನ್',
+    curatedAudioDocent: 'ವಿಶೇಷ ಆಡಿಯೋ ಗೈಡ್',
+    inDepthTour: 'ಸೆ ವಿವರವಾದ ವಿವರಣೆ',
+    listenFullAnalysis: 'ಚಿತ್ರದ ಸಂಪೂರ್ಣ ವಿವರಣೆಯನ್ನು ಕೇಳಿ',
+    nowExplaining: 'ಚಿತ್ರದ ವಿವರಗಳನ್ನು ವಿವರಿಸಲಾಗುತ್ತಿದೆ...',
+    audioDocentDesc: 'ಕುಂಚದ ಕಲೆ, ಮಾಧ್ಯಮ, ಅಳತೆಗಳು ಮತ್ತು ಐತಿಹಾಸಿಕ ಮಹತ್ವವನ್ನು ವಿವರಿಸುತ್ತದೆ.',
+    playAudioGuide: 'ಆಡಿಯೋ ಗೈಡ್ ಪ್ಲೇ ಮಾಡಿ',
+    pauseAudio: 'ಆಡಿಯೋ ವಿರಾಮಗೊಳಿಸಿ',
+    audioDescriptionLanguage: 'ಆಡಿಯೋ & ವಿವರಣೆ ಭಾಷೆ (9 ಭಾಷೆಗಳು)',
+    curatorialOverview: 'ಕ್ಯುರೇಟರ್ ವಿವರಣೆ',
+    chiefCuratorNote: 'ಮುಖ್ಯ ಕ್ಯುರೇಟರ್ ಟಿಪ್ಪಣಿ',
+    medium: 'ಮಾಧ್ಯಮ',
+    dimensions: 'ಅಳತೆಗಳು',
+    accessionId: 'ದಾಖಲಾತಿ ಸಂಖ್ಯೆ',
+    by: 'ರಚನೆ:',
+    created: 'ರಚಿಸಿದ ವರ್ಷ:',
+    active: 'ಸಕ್ರಿಯ',
+    backToCollection: 'ಸಂಗ್ರಹಕ್ಕೆ ಹಿಂತಿರುಗಿ',
+    alsoIn: 'ಈ ಗ್ಯಾಲರಿಯಲ್ಲಿರುವ ಇತರ ಕೃತಿಗಳು:',
+    viewGalleryOnMap: 'ನಕ್ಷೆಯಲ್ಲಿ ಗ್ಯಾಲರಿ ವೀಕ್ಷಿಸಿ',
+    fullView: 'ಪೂರ್ಣ ನೋಟ',
+    linkCopied: 'ಲಿಂಕ್ ನಕಲಿಸಲಾಗಿದೆ!',
+    favorite: 'ಮೆಚ್ಚಿನವು',
+    favorited: 'ಮೆಚ್ಚಿನವುಗಳಲ್ಲಿ ಸೇರಿಸಲಾಗಿದೆ',
+    exploreMasterpieces: 'ಪ್ರಮುಖ ಕಲಾಕೃತಿಗಳನ್ನು ಅನ್ವೇಷಿಸಿ',
+    exploreSubtitle: '5 ಗ್ಯಾಲರಿಗಳಲ್ಲಿ ಹರಡಿರುವ ವಿಶ್ವದರ್ಜೆಯ ಕಲಾಕೃತಿಗಳನ್ನು AI ಮಾರ್ಗದರ್ಶನದೊಂದಿಗೆ ಅನ್ವೇಷಿಸಿ.',
+    aiActive: 'ಅಥೀನಾ ಸ್ವಾಯತ್ತ AI (ಸಕ್ರಿಯ)',
+    supportedLanguagesCount: '9 ಬೆಂಬಲಿತ ಭಾಷೆಗಳು',
+    viewAll: 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ'
   },
   fr: {
     welcomeTitle: 'Bienvenue au Musée Intelligent',
@@ -369,7 +647,37 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     navLanguages: 'Langue',
     adminLogin: 'Accès Musée',
     dashboard: 'Tableau de bord',
-    bottleneckAlert: 'Alerte Affluence'
+    bottleneckAlert: 'Alerte Affluence',
+    interactiveArtGuide: 'Guide Artistique Interactif',
+    admin: 'Admin',
+    curatedAudioDocent: 'Audioguide Curatorial',
+    inDepthTour: 's Visite approfondie',
+    listenFullAnalysis: "Écouter l'analyse complète de l'œuvre",
+    nowExplaining: 'Explication détaillée en cours...',
+    audioDocentDesc: "Détaille les coups de pinceau, le support, les dimensions, l'importance historique et les secrets de l'œuvre.",
+    playAudioGuide: "Lancer l'audioguide",
+    pauseAudio: 'Mettre en pause',
+    audioDescriptionLanguage: "Langue de l'audio et des textes (9 langues)",
+    curatorialOverview: 'Présentation Curatoriée',
+    chiefCuratorNote: 'Note du Conservateur en Chef',
+    medium: 'Technique / Support',
+    dimensions: 'Dimensions',
+    accessionId: "N° d'inventaire",
+    by: 'par',
+    created: 'Création en',
+    active: 'Actif',
+    backToCollection: 'Retour à la collection',
+    alsoIn: 'Également dans',
+    viewGalleryOnMap: 'Voir la galerie sur le plan',
+    fullView: 'Plein écran',
+    linkCopied: 'Lien copié !',
+    favorite: 'Favori',
+    favorited: 'Ajouté aux favoris',
+    exploreMasterpieces: "Explorer les chefs-d'œuvre",
+    exploreSubtitle: 'Parcourez des œuvres de renommée mondiale réparties dans 5 galeries avec audioguide et assistance IA instantanée.',
+    aiActive: 'Athena IA Autonome (Active)',
+    supportedLanguagesCount: '9 Langues Disponibles',
+    viewAll: 'tout afficher'
   },
   de: {
     welcomeTitle: 'Willkommen im Smart Museum',
@@ -419,7 +727,37 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     navLanguages: 'Sprache',
     adminLogin: 'Admin-Portal',
     dashboard: 'Dashboard',
-    bottleneckAlert: 'Besucherandrang'
+    bottleneckAlert: 'Besucherandrang',
+    interactiveArtGuide: 'Interaktiver Kunstführer',
+    admin: 'Admin',
+    curatedAudioDocent: 'Kuratierter Audio-Guide',
+    inDepthTour: 's Detaillierte Führung',
+    listenFullAnalysis: 'Vollständige Bildanalyse anhören',
+    nowExplaining: 'Detailanalyse läuft...',
+    audioDocentDesc: 'Erläutert Pinseltechnik, Trägermaterial, Maße, historische Bedeutung und kuratorische Hintergründe.',
+    playAudioGuide: 'Audioguide abspielen',
+    pauseAudio: 'Audio anhalten',
+    audioDescriptionLanguage: 'Audio- & Beschreibungssprache (9 verfügbar)',
+    curatorialOverview: 'Kuratorische Einführung',
+    chiefCuratorNote: 'Anmerkung des Chefkurators',
+    medium: 'Material / Technik',
+    dimensions: 'Maße',
+    accessionId: 'Inventarnummer',
+    by: 'von',
+    created: 'Entstanden',
+    active: 'Aktiv',
+    backToCollection: 'Zurück zur Sammlung',
+    alsoIn: 'Ebenfalls in',
+    viewGalleryOnMap: 'Galerie auf dem Plan anzeigen',
+    fullView: 'Vollansicht',
+    linkCopied: 'Link kopiert!',
+    favorite: 'Favorit',
+    favorited: 'Gespeichert',
+    exploreMasterpieces: 'Meisterwerke erkunden',
+    exploreSubtitle: 'Entdecken Sie Meisterwerke in 5 thematischen Galerien mit KI-Kunstführer und Audioguide.',
+    aiActive: 'Athena Autonome KI (Aktiv)',
+    supportedLanguagesCount: '9 Unterstützte Sprachen',
+    viewAll: 'alle anzeigen'
   },
   es: {
     welcomeTitle: 'Bienvenido a Smart Museum',
@@ -469,9 +807,52 @@ const translations: Record<SupportedLanguage, Record<string, string>> = {
     navLanguages: 'Idioma',
     adminLogin: 'Administración',
     dashboard: 'Panel de Control',
-    bottleneckAlert: 'Alerta de Afluencia'
+    bottleneckAlert: 'Alerta de Afluencia',
+    interactiveArtGuide: 'Guía Artística Interactiva',
+    admin: 'Admin',
+    curatedAudioDocent: 'Audioguía Curatorial',
+    inDepthTour: 's Recorrido en profundidad',
+    listenFullAnalysis: 'Escuchar el análisis completo de la obra',
+    nowExplaining: 'Explicación detallada en curso...',
+    audioDocentDesc: 'Explica las pinceladas, técnica, dimensiones, relevancia histórica y secretos curatoriales.',
+    playAudioGuide: 'Reproducir audioguía',
+    pauseAudio: 'Pausar audio',
+    audioDescriptionLanguage: 'Idioma de audio y descripciones (9 idiomas)',
+    curatorialOverview: 'Reseña Curatorial',
+    chiefCuratorNote: 'Nota del Conservador Jefe',
+    medium: 'Técnica / Soporte',
+    dimensions: 'Dimensiones',
+    accessionId: 'N° de Inventario',
+    by: 'por',
+    created: 'Creada en',
+    active: 'Activo',
+    backToCollection: 'Volver a la colección',
+    alsoIn: 'También en',
+    viewGalleryOnMap: 'Ver galería en el plano',
+    fullView: 'Vista completa',
+    linkCopied: '¡Enlace copiado!',
+    favorite: 'Favorito',
+    favorited: 'En favoritos',
+    exploreMasterpieces: 'Explorar obras maestras',
+    exploreSubtitle: 'Explore obras maestras mundiales en 5 galerías con guía de audio y asistencia de IA al instante.',
+    aiActive: 'Athena IA Autónoma (Activa)',
+    supportedLanguagesCount: '9 Idiomas Disponibles',
+    viewAll: 'ver todos'
   }
 };
+
+function getLocalizedMedium(rawMedium: string | undefined, lang: SupportedLanguage): string {
+  if (!rawMedium) return 'Oil on canvas';
+  if (lang === 'en') return rawMedium;
+  const lower = rawMedium.toLowerCase();
+  const map = MEDIUM_MAP[lang] || MEDIUM_MAP.en;
+  if (lower.includes('poplar')) return map.poplar;
+  if (lower.includes('canvas')) return map.canvas;
+  if (lower.includes('bronze')) return map.bronze;
+  if (lower.includes('marble')) return map.marble;
+  if (lower.includes('fresco')) return map.fresco;
+  return rawMedium;
+}
 
 export class TranslationService {
   private currentLang: SupportedLanguage = 'en';
@@ -505,19 +886,31 @@ export class TranslationService {
     return landingTranslations[this.currentLang]?.[key] || translations[this.currentLang]?.[key] || landingTranslations['en']?.[key] || translations['en']?.[key] || key;
   }
 
-  public getExhibitTranslation(exhibit: any, lang?: SupportedLanguage): { title: string; description: string; category?: string } {
+  public getExhibitTranslation(exhibit: any, lang?: SupportedLanguage): LocalizedExhibit {
     const target = lang || this.currentLang;
-    if (target !== 'en' && exhibit.translations?.[target]) {
+    if (target === 'en') {
       return {
-        title: exhibit.translations[target].title || exhibit.title,
-        description: exhibit.translations[target].description || exhibit.description,
-        category: exhibit.translations[target].category || exhibit.category
+        title: exhibit.title,
+        description: exhibit.description,
+        category: exhibit.category,
+        longDescription: exhibit.longDescription,
+        medium: exhibit.medium,
+        curatorNotes: exhibit.curatorNotes
       };
     }
+
+    const trans = exhibit.translations?.[target] || {};
+    const customLong = EXHIBIT_LONG_DESCRIPTIONS[exhibit.exhibitId]?.[target] || trans.longDescription;
+    const customMedium = trans.medium || getLocalizedMedium(exhibit.medium, target);
+
     return {
-      title: exhibit.title,
-      description: exhibit.description,
-      category: exhibit.category
+      title: trans.title || exhibit.title,
+      description: trans.description || exhibit.description,
+      category: trans.category || exhibit.category,
+      longDescription: customLong,
+      medium: customMedium || exhibit.medium,
+      artistBio: trans.artistBio,
+      curatorNotes: trans.curatorNotes
     };
   }
 }

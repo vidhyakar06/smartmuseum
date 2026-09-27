@@ -50,6 +50,12 @@ export const ExhibitCard: React.FC<ExhibitCardProps> = ({ exhibit, compact = fal
           alt={localized.title}
           className="w-full h-full object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (!target.src.includes('/artworks/mona_lisa.jpg')) {
+              target.src = '/artworks/mona_lisa.jpg';
+            }
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#15181D] via-transparent to-transparent opacity-80" />
 

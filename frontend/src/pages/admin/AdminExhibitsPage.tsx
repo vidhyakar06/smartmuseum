@@ -169,7 +169,17 @@ export const AdminExhibitsPage: React.FC = () => {
                 <tr key={ex.exhibitId} className="hover:bg-museum-elevated/40 transition-colors">
                   <td className="p-4">
                     <div className="flex items-center gap-3">
-                      <img src={ex.images[0]} alt={ex.title} className="w-10 h-10 object-cover rounded-lg border border-museum-border/80" />
+                      <img
+                        src={ex.images[0]}
+                        alt={ex.title}
+                        className="w-10 h-10 object-cover rounded-lg border border-museum-border/80"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (!target.src.includes('/artworks/mona_lisa.jpg')) {
+                            target.src = '/artworks/mona_lisa.jpg';
+                          }
+                        }}
+                      />
                       <div>
                         <p className="font-semibold text-white">{ex.title}</p>
                         <span className="text-[10px] font-mono text-museum-gold">{ex.exhibitId}</span>

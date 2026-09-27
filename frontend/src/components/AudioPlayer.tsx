@@ -160,7 +160,17 @@ export const AudioPlayer: React.FC = () => {
           <div className="flex items-center gap-3 overflow-hidden">
             {/* Artwork Thumbnail with Live Wave Badge */}
             <div className="w-12 h-12 rounded-xl overflow-hidden bg-museum-elevated flex-shrink-0 border border-museum-gold/30 relative group shadow-md">
-              <img src={exhibit.images[0]} alt={exhibit.title} className="w-full h-full object-cover" />
+              <img
+                src={exhibit.images[0]}
+                alt={exhibit.title}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('/artworks/mona_lisa.jpg')) {
+                    target.src = '/artworks/mona_lisa.jpg';
+                  }
+                }}
+              />
               {isActuallyPlaying && (
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center gap-0.5 px-1">
                   <span className="w-1 h-4 bg-museum-gold rounded-full animate-pulse" style={{ animationDuration: '0.6s' }} />

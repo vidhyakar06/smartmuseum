@@ -434,7 +434,17 @@ export const FloorMap: React.FC<FloorMapProps> = ({
         {hoveredExhibit && (
           <div className="absolute top-14 left-4 bg-[#15181D]/95 border border-museum-gold/30 rounded-xl p-3 shadow-2xl backdrop-blur-md text-xs max-w-xs pointer-events-none z-30">
             <div className="flex gap-2.5 items-center">
-              <img src={hoveredExhibit.images[0]} alt={hoveredExhibit.title} className="w-10 h-10 object-cover rounded-lg border border-white/10" />
+              <img
+                src={hoveredExhibit.images[0]}
+                alt={hoveredExhibit.title}
+                className="w-10 h-10 object-cover rounded-lg border border-white/10"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('/artworks/mona_lisa.jpg')) {
+                    target.src = '/artworks/mona_lisa.jpg';
+                  }
+                }}
+              />
               <div>
                 <p className="font-semibold text-white truncate">{hoveredExhibit.title}</p>
                 <p className="text-museum-muted text-[11px]">{hoveredExhibit.artist} ({hoveredExhibit.year})</p>

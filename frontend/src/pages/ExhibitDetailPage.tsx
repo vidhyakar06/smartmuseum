@@ -187,6 +187,12 @@ export const ExhibitDetailPage: React.FC = () => {
               alt=""
               aria-hidden="true"
               className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-25 scale-110 pointer-events-none"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('/artworks/mona_lisa.jpg')) {
+                  target.src = '/artworks/mona_lisa.jpg';
+                }
+              }}
             />
 
             {/* Complete, Uncropped Masterpiece Artwork */}
@@ -194,6 +200,12 @@ export const ExhibitDetailPage: React.FC = () => {
               src={exhibit.images[selectedImageIndex] || exhibit.images[0]}
               alt={localized.title}
               className="relative z-10 max-h-[520px] w-auto max-w-full rounded-2xl object-contain shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('/artworks/mona_lisa.jpg')) {
+                  target.src = '/artworks/mona_lisa.jpg';
+                }
+              }}
             />
 
             {/* Gallery Location Overlay */}
@@ -456,6 +468,12 @@ export const ExhibitDetailPage: React.FC = () => {
               alt={localized.title}
               className="max-h-[80vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
               onClick={(e) => e.stopPropagation()}
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('/artworks/mona_lisa.jpg')) {
+                  target.src = '/artworks/mona_lisa.jpg';
+                }
+              }}
             />
             <p className="mt-3 text-center text-sm font-serif text-museum-gold font-medium">
               {localized.title} — {exhibit.artist} ({exhibit.year})

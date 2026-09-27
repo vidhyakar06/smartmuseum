@@ -236,7 +236,17 @@ export const AIGuidePage: React.FC = () => {
       {selectedExhibit && (
         <div className="bg-[#151922] border-b border-museum-border/80 px-4 py-2 flex items-center justify-between text-xs">
           <div className="flex items-center gap-2.5 overflow-hidden">
-            <img src={selectedExhibit.images[0]} alt={selectedExhibit.title} className="w-8 h-8 rounded-lg object-cover border border-museum-gold/30" />
+            <img
+              src={selectedExhibit.images[0]}
+              alt={selectedExhibit.title}
+              className="w-8 h-8 rounded-lg object-cover border border-museum-gold/30"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('/artworks/mona_lisa.jpg')) {
+                  target.src = '/artworks/mona_lisa.jpg';
+                }
+              }}
+            />
             <div className="truncate">
               <span className="text-museum-gold font-semibold truncate">{selectedExhibit.title}</span>
               <span className="text-museum-muted text-[11px] ml-2">by {selectedExhibit.artist} ({selectedExhibit.year})</span>

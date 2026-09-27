@@ -279,18 +279,49 @@ export const seedExhibits: Exhibit[] = [
     coordinates: { x: 230, y: 90, floor: 1 },
     highlight: true,
     featured: true,
+    curatorNotes: 'Oil on canvas, 44.5 cm × 39 cm. Housed at the Mauritshuis, The Hague. A tronie (character study) rather than a formal portrait.',
     medium: 'Oil on canvas',
-    dimensions: '44.5 cm × 39 cm',
+    dimensions: '44.5 cm × 39 cm (17.5 in × 15.4 in)',
     translations: {
       ta: {
-        title: 'முத்து கம்மலுடன் பெண்',
-        description: 'யோஹன்னஸ் வெர்மீரின் புகழ்பெற்ற டச்சுப் பொற்காலக் கலைப்படைப்பு.',
-        category: 'டச்சுப் பொற்காலம்'
+        title: 'முத்து காதணி அணிந்த சிறுமி',
+        description: 'டச்சு மேதை ஜோஹானஸ் வெர்மேரின் புகழ்பெற்ற ஓவியம், ஒரு இளம் சிறுமியின் ஆழமான பார்வையையும் பளிச்சிடும் முத்து காதணியையும் சித்தரிக்கிறது.',
+        category: 'பாரோக் கலை'
       },
       hi: {
         title: 'मोती की बाली वाली लड़की',
-        description: 'जोहान्स वर्मीर की अद्भुत डच पेंटिंग, उत्तरी यूरोप की मोना लिसा कही जाती है।',
-        category: 'डच स्वर्ण युग'
+        description: 'डच मास्टर जोहान्स वर्मीर की विश्व प्रसिद्ध कृति, जिसमें एक लड़की की रहस्यमयी दृष्टि और चमकता मोती की बाली दर्शाई गई है।',
+        category: 'बरोक कला'
+      },
+      ml: {
+        title: 'മുത്തു കമ്മൽ ധരിച്ച പെൺകുട്ടി',
+        description: 'ഡച്ച് ചിത്രകാരൻ ജോഹാനസ് വെർമിയറുടെ അതിശ്രേഷ്ഠ ചിത്രം, തിളക്കമുള്ള മുത്ത് കമ്മലും ഗൂഢമായ നോട്ടവും ഉള്ള പെൺകുട്ടി.',
+        category: 'ബറോക്ക് കല'
+      },
+      te: {
+        title: 'ముత్యపు చెవిపోగు అమ్మాయి',
+        description: 'డచ్ మాస్టర్ జోహాన్నెస్ వెర్మీర్ యొక్క విశ్వ ప్రసిద్ధ చిత్రం, మెరిసే ముత్యపు చెవిపోగుతో నిಗూఢంగా చూసే అమ్మాయి.',
+        category: 'బరోక్ కళ'
+      },
+      kn: {
+        title: 'ಮುತ್ತಿನ ಕಿವಿಯೋಲೆ ಧರಿಸಿದ ಹುಡುಗಿ',
+        description: 'ಡಚ್ ಕಲಾ ಮೇಧಾವಿ ಯೋಹಾನ್ನೆಸ್ ವೆರ್ಮೀರ್ ರಚಿಸಿದ ವಿಶ್ವ ಪ್ರಸಿದ್ಧ ಕಲಾಕೃತಿ.',
+        category: 'ಬರೋಕ್ ಕಲೆ'
+      },
+      fr: {
+        title: 'La Jeune Fille à la perle',
+        description: 'Chef-d\'œuvre du maître hollandais Johannes Vermeer, ce portrait intimiste capture une jeune fille se retournant, avec sa perle lumineuse et son regard énigmatique.',
+        category: 'Art baroque'
+      },
+      de: {
+        title: 'Das Mädchen mit dem Perlenohrring',
+        description: 'Das Meisterwerk des holländischen Malers Johannes Vermeer zeigt ein junges Mädchen mit einem leuchtenden Perlgehänge und einem rätselhaften Blick.',
+        category: 'Barock'
+      },
+      es: {
+        title: 'La joven de la perla',
+        description: 'Obra maestra del pintor holandés Johannes Vermeer, que retrata a una joven con una luminosa perla y una mirada enigmática sobre fondo oscuro.',
+        category: 'Arte barroco'
       }
     },
     createdAt: new Date().toISOString()
@@ -1021,74 +1052,7 @@ export const seedExhibits: Exhibit[] = [
       }
     },
     createdAt: new Date().toISOString()
-  },
-  {
-    id: 'EX-025',
-    exhibitId: 'EX025',
-    title: 'Girl with a Pearl Earring',
-    artist: 'Johannes Vermeer',
-    year: '1665',
-    category: 'Baroque',
-    description: 'Often called the "Mona Lisa of the North," this intimate portrait by Dutch master Johannes Vermeer captures a young girl turning to look over her shoulder, famed for its luminous pearl earring and mastery of light.',
-    longDescription: 'Painted in oil on canvas with exceptional economy of means, Vermeer created a tronie — a character study — rather than a formal portrait. The girl\'s parted lips, direct gaze, and the glistening teardrop pearl earring against a dark background exhibit Vermeer\'s unparalleled skill in rendering light. The painting entered the Mauritshuis collection in The Hague in 1902.',
-    images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/800px-1665_Girl_with_a_Pearl_Earring.jpg'
-    ],
-    audioUrl: '/audio/pearl_earring_en.mp3',
-    audioDuration: 130,
-    galleryId: 'GAL_A',
-    location: 'Gallery A - Wall 4',
-    coordinates: { x: 200, y: 200, floor: 1 },
-    highlight: true,
-    featured: false,
-    curatorNotes: 'Oil on canvas, 44.5 cm × 39 cm. Housed at the Mauritshuis, The Hague. A tronie (character study) rather than a formal portrait.',
-    medium: 'Oil on canvas',
-    dimensions: '44.5 cm × 39 cm (17.5 in × 15.4 in)',
-    translations: {
-      ta: {
-        title: 'முத்து காதணி அணிந்த சிறுமி',
-        description: 'டச்சு மேதை ஜோஹானஸ் வெர்மேரின் புகழ்பெற்ற ஓவியம், ஒரு இளம் சிறுமியின் ஆழமான பார்வையையும் பளிச்சிடும் முத்து காதணியையும் சித்தரிக்கிறது.',
-        category: 'பாரோக் கலை'
-      },
-      hi: {
-        title: 'मोती की बाली वाली लड़की',
-        description: 'डच मास्टर जोहान्स वर्मीर की विश्व प्रसिद्ध कृति, जिसमें एक लड़की की रहस्यमयी दृष्टि और चमकता मोती की बाली दर्शाई गई है।',
-        category: 'बरोक कला'
-      },
-      ml: {
-        title: 'മുത്തു കമ്മൽ ധരിച്ച പെൺകുട്ടി',
-        description: 'ഡച്ച് ചിത്രകാരൻ ജോഹാനസ് വെർമിയറുടെ അതിശ്രേഷ്ഠ ചിത്രം, തിളക്കമുള്ള മുത്ത് കമ്മലും ഗൂഢമായ നോട്ടവും ഉള്ള പെൺകുട്ടി.',
-        category: 'ബറോക്ക് കല'
-      },
-      te: {
-        title: 'ముత్యపు చెవిపోగు అమ్మాయి',
-        description: 'డచ్ మాస్టర్ జోహాన్నెస్ వెర్మీర్ యొక్క విశ్వ ప్రసిద్ధ చిత్రం, మెరిసే ముత్యపు చెవిపోగుతో నిగూఢంగా చూసే అమ్మాయి.',
-        category: 'బరోక్ కళ'
-      },
-      kn: {
-        title: 'ಮುತ್ತಿನ ಕಿವಿಯೋಲೆ ಧರಿಸಿದ ಹುಡುಗಿ',
-        description: 'ಡಚ್ ಕಲಾ ಮೇಧಾವಿ ಯೋಹಾನ್ನೆಸ್ ವೆರ್ಮೀರ್ ರಚಿಸಿದ ವಿಶ್ವ ಪ್ರಸಿದ್ಧ ಕಲಾಕೃತಿ.',
-        category: 'ಬರೋಕ್ ಕಲೆ'
-      },
-      fr: {
-        title: 'La Jeune Fille à la perle',
-        description: 'Chef-d\'œuvre du maître hollandais Johannes Vermeer, ce portrait intimiste capture une jeune fille se retournant, avec sa perle lumineuse et son regard énigmatique.',
-        category: 'Art baroque'
-      },
-      de: {
-        title: 'Das Mädchen mit dem Perlenohrring',
-        description: 'Das Meisterwerk des holländischen Malers Johannes Vermeer zeigt ein junges Mädchen mit einem leuchtenden Perlgehänge und einem rätselhaften Blick.',
-        category: 'Barock'
-      },
-      es: {
-        title: 'La joven de la perla',
-        description: 'Obra maestra del pintor holandés Johannes Vermeer, que retrata a una joven con una luminosa perla y una mirada enigmática sobre fondo oscuro.',
-        category: 'Arte barroco'
-      }
-    },
-    createdAt: new Date().toISOString()
-  }
-];
+  }];
 
 export const seedVisitors: Visitor[] = [
   {
